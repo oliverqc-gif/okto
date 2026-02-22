@@ -1,0 +1,17 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "Okto App Preview",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "http.server", "3000"],
+      "port": 3000
+    },
+    {
+      "name": "Okto FastAPI Backend",
+      "runtimeExecutable": "python",
+      "runtimeArgs": ["-m", "uvicorn", "main:app", "--reload", "--app-dir", "backend", "--port", "8000"],
+      "port": 8000
+    }
+  ]
+}
