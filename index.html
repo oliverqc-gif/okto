@@ -66,6 +66,13 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .fi-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
 .terms{font-size:12px;color:var(--text3);text-align:center;margin-top:14px;line-height:1.5;}
 .terms a{color:var(--amber);text-decoration:none;}
+.pw-wrap{position:relative;}
+.pw-wrap .fi{padding-right:48px;}
+.pw-tog{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:none;border:none;cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;opacity:0.5;transition:opacity 0.2s;}
+.pw-tog:hover{opacity:0.9;}
+.pw-tog svg{width:22px;height:22px;}
+.pw-tog .eye-open{display:block;}.pw-tog .eye-shut{display:none;}
+.pw-tog.hidden .eye-open{display:none;}.pw-tog.hidden .eye-shut{display:block;}
 
 /* Profile */
 .scr-profile{padding:70px 28px 120px;}
@@ -97,8 +104,8 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .oli.sel .chk::after{content:'';width:8px;height:5px;border-left:2px solid #1A1520;border-bottom:2px solid #1A1520;transform:rotate(-45deg);margin-top:-2px;}
 
 .rv{text-align:center;margin-bottom:14px;}
-.rv-n{font-family:'Space Mono',monospace;font-size:28px;font-weight:700;color:var(--amber);}
-.rv-u{font-size:13px;color:var(--text2);margin-left:6px;}
+.rv-n{font-family:'Space Mono',monospace;font-size:22px;font-weight:700;color:var(--amber);}
+.rv-u{font-size:14px;color:var(--text2);margin-left:6px;}
 .rng{width:100%;-webkit-appearance:none;appearance:none;height:6px;background:var(--surface2);border-radius:3px;outline:none;margin-bottom:6px;}
 .rng::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;background:linear-gradient(180deg,var(--amber-lt),var(--amber-dk));border-radius:50%;cursor:pointer;box-shadow:0 2px 8px rgba(240,160,48,0.4);}
 .rng-l{display:flex;justify-content:space-between;font-size:11px;color:var(--text3);}
@@ -128,7 +135,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .tog.on{background:var(--amber);border-color:var(--amber-dk);}
 .tog::after{content:'';position:absolute;top:2px;left:2px;width:22px;height:22px;background:var(--text);border-radius:50%;box-shadow:0 1px 3px rgba(0,0,0,0.3);transition:transform 0.3s;}
 .tog.on::after{transform:translåeteX(20px);background:#1A1520;}
-.fbot{position:absolute;bottom:0;left:0;right:0;padding:16px 28px 40px;background:linear-gradient(to top,var(--bg) 60%,transparent);z-index:50;}
+.fbot{padding:16px 28px 40px;}
 
 /* Loading */
 .scr-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px 28px;background:radial-gradient(ellipse at 50% 35%,rgba(240,160,48,0.06),var(--bg) 70%);overflow:hidden;}
@@ -136,24 +143,17 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .load-scene{position:relative;width:300px;height:300px;margin-bottom:20px;}
 
 /* Okto in center */
-.load-octo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;}
-.load-octo img{width:110px;height:110px;object-fit:contain;animation:octoPulse 2s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(240,160,48,0.3));}
+.load-octo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;transition:transform 0.6s ease-in-out;}
+.load-octo img{width:110px;height:110px;object-fit:contain;animation:octoPulse 2s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(240,160,48,0.3));transition:transform 0.6s ease-in-out;}
+.load-octo.grabbing{transform:translate(-50%,-50%) scale(1.1);}
+.load-octo.grabbing img{transform:scale(1.05);}
 @keyframes octoPulse{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.05) translateY(-4px)}}
 
 /* Orbiting ring */
 .orbit-ring{position:absolute;inset:10px;border-radius:50%;border:1px dashed rgba(240,160,48,0.12);animation:spin 20s linear infinite;}
 
-/* Tentacle lines reaching from center to sources */
-.tentacle{position:absolute;top:50%;left:50%;width:2px;height:90px;transform-origin:top center;opacity:0;}
-.tentacle::before{content:'';position:absolute;top:0;left:-1px;width:4px;height:100%;background:linear-gradient(to bottom,var(--amber),transparent);border-radius:2px;animation:tentReach 1.5s ease-in-out infinite;}
-@keyframes tentReach{0%{height:0;opacity:0.8}50%{height:100%;opacity:0.6}100%{height:100%;opacity:0}}
-.tentacle.active{opacity:1;}
-.t-0{transform:rotate(0deg)}.t-1{transform:rotate(45deg)}.t-2{transform:rotate(90deg)}.t-3{transform:rotate(135deg)}
-.t-4{transform:rotate(180deg)}.t-5{transform:rotate(225deg)}.t-6{transform:rotate(270deg)}.t-7{transform:rotate(315deg)}
-.t-0 .tentacle::before{animation-delay:0s}.t-1 .tentacle::before{animation-delay:0.2s}
-.t-2 .tentacle::before{animation-delay:0.4s}.t-3 .tentacle::before{animation-delay:0.6s}
-.t-4 .tentacle::before{animation-delay:0.8s}.t-5 .tentacle::before{animation-delay:1.0s}
-.t-6 .tentacle::before{animation-delay:1.2s}.t-7 .tentacle::before{animation-delay:1.4s}
+/* SVG Tentacle overlay */
+.tent-svg{position:absolute;inset:0;width:300px;height:300px;z-index:5;pointer-events:none;}
 
 /* Floating news source bubbles */
 .src-bubble{
@@ -165,7 +165,16 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
   box-shadow:0 2px 12px rgba(0,0,0,0.3);
 }
 .src-bubble.visible{opacity:1;transform:scale(1);}
-.src-bubble.grabbed{border-color:var(--amber);background:rgba(240,160,48,0.15);color:var(--amber);box-shadow:0 0 16px rgba(240,160,48,0.2);}
+.src-bubble.grabbed{
+  border-color:var(--amber);background:rgba(240,160,48,0.15);color:var(--amber);
+  box-shadow:0 0 16px rgba(240,160,48,0.2);
+  animation:bubbleGrab 0.5s cubic-bezier(0.34,1.56,0.64,1);
+}
+@keyframes bubbleGrab{
+  0%{transform:scale(1);}
+  50%{transform:scale(1.15);}
+  100%{transform:scale(1);}
+}
 
 /* Position bubbles around the circle */
 .sb-0{top:2px;left:50%;margin-left:-22px;}
@@ -289,7 +298,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
   <div class="scr scr-welcome on" id="s-welcome">
     <img src="okto-mascot.png" class="mascot-lg" alt="Okto">
     <div class="welcome-logo">Okto</div>
-    <div class="welcome-tagline">Finansnyheder der passer til dig. Personlig, smart og altid relevant.</div>
+    <div class="welcome-tagline" style="max-width:340px;white-space:nowrap;">Fang de vigtige nyheder.</div>
     <button class="btn-p" onclick="go('s-signup')">Opret konto</button>
     <button class="btn-s" onclick="go('s-signup')">Log ind</button>
   </div>
@@ -297,78 +306,165 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
   <!-- SIGNUP -->
   <div class="scr scr-form" id="s-signup">
     <div class="hdr"><button class="back" onclick="go('s-welcome')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button><div class="ttl">Opret din konto</div><div class="sub">Kom i gang med personlige finansnyheder</div></div>
-    <div class="fi-row"><div class="fg"><label class="fl">Fornavn</label><input class="fi" value="Thomas"></div><div class="fg"><label class="fl">Efternavn</label><input class="fi" value="Nielsen"></div></div>
+    <div class="fi-row"><div class="fg"><label class="fl">Fornavn(e)</label><input class="fi" value="Thomas"></div><div class="fg"><label class="fl">Efternavn</label><input class="fi" value="Nielsen"></div></div>
     <div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" value="thomas@eksempel.dk"></div>
-    <div class="fg"><label class="fl">Adgangskode</label><input class="fi" type="password" value="password123"></div>
-    <div class="fg"><label class="fl">Bekræft adgangskode</label><input class="fi" type="password" value="password123"></div>
-    <button class="btn-p" onclick="go('s-p1')" style="margin-top:8px">Opret konto</button>
+    <div class="fg"><label class="fl">Adgangskode</label><div class="pw-wrap"><input class="fi" type="password" value="password123" id="pw1"><button type="button" class="pw-tog hidden" onclick="togPw(this,'pw1')"><svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2.5"/><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg><svg class="eye-shut" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><path d="M3 3l18 18" stroke-width="2.5"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg></button></div></div>
+    <div class="fg"><label class="fl">Bekræft adgangskode</label><div class="pw-wrap"><input class="fi" type="password" value="password123" id="pw2"><button type="button" class="pw-tog hidden" onclick="togPw(this,'pw2')"><svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2.5"/><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg><svg class="eye-shut" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><path d="M3 3l18 18" stroke-width="2.5"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg></button></div></div>
+    <button class="btn-p" onclick="go('s-intro')" style="margin-top:8px">Opret konto</button>
     <div class="terms">Ved at oprette en konto accepterer du vores <a href="#">vilkar</a> og <a href="#">privatlivspolitik</a></div>
+  </div>
+
+  <!-- PROFILE INTRO -->
+  <div class="scr scr-welcome" id="s-intro" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px 36px 40px;background:radial-gradient(ellipse at 50% 30%,rgba(240,160,48,0.06),var(--bg) 70%);">
+    <img src="okto-mascot.png" class="mascot-md" alt="Okto" style="margin-bottom:24px;">
+    <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.3;">Lad os lære dig at kende</div>
+    <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.7;max-width:310px;margin-bottom:40px;">Du vil nu gennemgå nogle få trin, hvorigennem din profil defineres. Det er ud fra disse informationer at nyheder tilpasses og rettes mod dig. Det er derfor vigtigt for din oplevelse af Okto at disse trin gennemføres ordentligt.</div>
+    <button class="btn-p" onclick="go('s-p1')">Lad os komme i gang</button>
   </div>
 
   <!-- PROFILE 1 -->
   <div class="scr scr-profile" id="s-p1">
-    <div class="hdr"><button class="back" onclick="go('s-signup')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
-    <div class="ttl">Om dig</div><div class="sub" style="margin-bottom:26px">Grundlæggende oplysninger.</div>
-    <div class="fg"><label class="fl">Alder</label><div class="rv"><span class="rv-n" id="age-v">32</span><span class="rv-u">ar</span></div><input class="rng" type="range" min="18" max="75" value="32" oninput="document.getElementById('age-v').textContent=this.value"><div class="rng-l"><span>18</span><span>75</span></div></div>
+    <div class="hdr"><button class="back" onclick="go('s-intro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
+    <div class="prog"><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
+    <div class="ttl">Grundlæggende oplysninger</div><div class="sub" style="margin-bottom:26px">Fortæl os lidt om dig selv.</div>
+    <div class="fg"><label class="fl">Alder</label><div class="rv"><span class="rv-n" id="age-v">32</span><span class="rv-u">år</span></div><input class="rng" type="range" min="18" max="80" value="32" oninput="document.getElementById('age-v').textContent=this.value"><div class="rng-l"><span>18</span><span>80</span></div></div>
     <div class="fg" style="margin-top:22px"><label class="fl">Region</label><div class="sel-w"><select class="fsel"><option>Hovedstaden</option><option>Midtjylland</option><option>Nordjylland</option><option>Sjælland</option><option>Syddanmark</option></select></div></div>
     <div class="fg" style="margin-top:18px"><label class="fl">Beskæftigelse</label><div class="og"><div class="oc sel" onclick="togC(this)"><span class="oi">&#128188;</span><span class="ol">Lønmodtager</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#127970;</span><span class="ol">Selvstændig</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#127891;</span><span class="ol">Studerende</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#127796;</span><span class="ol">Pensioneret</span></div></div></div>
-    <div class="fg" style="margin-top:20px"><label class="fl">Årlig bruttoindkomst</label><div class="rv"><span class="rv-n" id="inc-v">450</span><span class="rv-u">.000 kr.</span></div><input class="rng" type="range" min="100" max="1500" step="25" value="450" oninput="document.getElementById('inc-v').textContent=this.value"><div class="rng-l"><span>100.000</span><span>1.500.000+</span></div></div>
-    <div style="height:80px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p2')">Næste</button></div>
+    <div class="fg" style="margin-top:18px"><label class="fl">Uddannelsesniveau</label><div class="sel-w"><select class="fsel"><option>Grundskole</option><option>Gymnasium / HF</option><option>Erhvervsuddannelse</option><option>Kort videregående</option><option>Mellemlang videregående</option><option>Lang videregående</option><option>Ph.d. / Forsker</option></select></div></div>
+    <div class="fg" style="margin-top:20px"><label class="fl">Årlig indkomst før skat</label><div class="rv"><span class="rv-n" id="inc-v">480</span><span class="rv-u">000 kr.</span></div><input class="rng" type="range" min="0" max="2000" step="1" value="480" oninput="document.getElementById('inc-v').textContent=this.value"><div class="rng-l"><span>0</span><span>2.000.000+</span></div></div>
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p2')">Næste</button></div>
   </div>
 
-  <!-- PROFILE 2 -->
+  <!-- PROFILE 2: BOLIG -->
   <div class="scr scr-profile" id="s-p2">
     <div class="hdr"><button class="back" onclick="go('s-p1')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div></div>
-    <div class="ttl">Bolig</div><div class="sub" style="margin-bottom:26px">Fortæl os om din boligsituation.</div>
-    <div class="fg"><label class="fl">Boligtype</label><div class="olist">
+    <div class="prog"><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
+    <div class="ttl">Bolig</div><div class="sub" style="margin-bottom:26px">Vælg alle boligtyper der gælder for dig.</div>
+
+    <div class="sl" style="margin-top:0">Egen bolig</div>
+    <div class="olist">
       <div class="oli" onclick="togL(this)"><span class="oi">&#127970;</span><div class="oc-c"><div class="ol">Lejebolig</div><div class="od">Lejer lejlighed eller hus</div></div><div class="chk"></div></div>
       <div class="oli sel" onclick="togL(this)"><span class="oi">&#127969;</span><div class="oc-c"><div class="ol">Andelsbolig</div><div class="od">Andelslejlighed eller -hus</div></div><div class="chk"></div></div>
       <div class="oli" onclick="togL(this)"><span class="oi">&#127960;</span><div class="oc-c"><div class="ol">Ejerbolig</div><div class="od">Ejerlejlighed eller villa</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togL(this)"><span class="oi">&#128682;</span><div class="oc-c"><div class="ol">Sommerhus</div><div class="od">Ejer eller lejer sommerhus</div></div><div class="chk"></div></div>
-    </div></div>
-    <div class="sl">Boligværdi (anslået)</div>
-    <div class="rv"><span class="rv-n" id="hv-v">2.2</span><span class="rv-u">mio. kr.</span></div>
-    <input class="rng" type="range" min="5" max="80" value="22" oninput="document.getElementById('hv-v').textContent=(this.value/10).toFixed(1)">
-    <div class="rng-l"><span>500.000</span><span>8.000.000+</span></div>
-    <div style="height:80px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p3')">Næste</button></div>
+    </div>
+
+    <div class="sl">Fritidsboliger</div>
+    <div class="olist">
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128682;</span><div class="oc-c"><div class="ol">Sommerhus</div><div class="od">Ejer sommerhus</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#127965;</span><div class="oc-c"><div class="ol">Kolonihave</div><div class="od">Ejer kolonihavehus</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#127758;</span><div class="oc-c"><div class="ol">Feriebolig i udlandet</div><div class="od">Ejer bolig i udlandet</div></div><div class="chk"></div></div>
+    </div>
+
+    <div class="sl">Erhvervsboliger</div>
+    <div class="olist">
+      <div class="oli" onclick="togM(this)"><span class="oi">&#127963;</span><div class="oc-c"><div class="ol">Udlejningsejendom</div><div class="od">Ejer bolig der udlejes</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128200;</span><div class="oc-c"><div class="ol">Erhvervsejendom</div><div class="od">Kontor, butik eller lager</div></div><div class="chk"></div></div>
+    </div>
+
+    <!-- Dynamic per-property value sliders -->
+    <div id="housing-values">
+      <div class="sl">Anslået værdi pr. bolig</div>
+      <div class="hv-item" data-label="Andelsbolig">
+        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;">Andelsbolig</div>
+        <div class="rv"><span class="rv-n" id="hv-andel">2.2</span><span class="rv-u">mio. kr.</span></div>
+        <input class="rng" type="range" min="1" max="100" value="22" oninput="document.getElementById('hv-andel').textContent=(this.value/10).toFixed(1)">
+        <div class="rng-l"><span>100.000</span><span>10.000.000+</span></div>
+      </div>
+    </div>
+
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p3')">Næste</button></div>
   </div>
 
-  <!-- PROFILE 3 -->
+  <!-- PROFILE 3: KØRETØJER -->
   <div class="scr scr-profile" id="s-p3">
     <div class="hdr"><button class="back" onclick="go('s-p2')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div></div>
-    <div class="ttl">Lan & køretøjer</div><div class="sub" style="margin-bottom:26px">Oplysninger om lan og transport.</div>
-    <div class="fg"><label class="fl">Låntyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Boliglån</div><div class="chip" onclick="this.classList.toggle('sel')">Billån</div><div class="chip sel" onclick="this.classList.toggle('sel')">Andelslån</div><div class="chip" onclick="this.classList.toggle('sel')">Forbrugslån</div><div class="chip" onclick="this.classList.toggle('sel')">SU-lån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div></div></div>
-    <div class="sl">Antal lån</div>
-    <div class="stepper"><button class="stp-btn" onclick="stp('lc',-1)">-</button><span class="stp-v" id="lc">2</span><button class="stp-btn" onclick="stp('lc',1)">+</button><span class="stp-l">lån i alt</span></div>
-    <div class="sl">Samlet restgæld</div>
-    <div class="rv"><span class="rv-n" id="debt-v">1.8</span><span class="rv-u">mio. kr.</span></div>
-    <input class="rng" type="range" min="1" max="60" value="18" oninput="document.getElementById('debt-v').textContent=(this.value/10).toFixed(1)">
-    <div class="rng-l"><span>100.000</span><span>6.000.000+</span></div>
-    <div class="sl">Rentetype</div>
-    <div class="og og3"><div class="oc sel" onclick="togC(this)" style="padding:12px 8px"><span class="ol" style="font-size:12px">Fast rente</span></div><div class="oc" onclick="togC(this)" style="padding:12px 8px"><span class="ol" style="font-size:12px">Variabel</span></div><div class="oc" onclick="togC(this)" style="padding:12px 8px"><span class="ol" style="font-size:12px">Blandet</span></div></div>
-    <div class="sl">Køretøj</div>
-    <div class="og"><div class="oc" onclick="togC(this)"><span class="oi">&#128663;</span><span class="ol">Benzin/diesel</span></div><div class="oc sel" onclick="togC(this)"><span class="oi">&#9889;</span><span class="ol">Elbil</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#128690;</span><span class="ol">Cykel/offentlig</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#128661;</span><span class="ol">Hybrid</span></div></div>
-    <div style="height:80px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p4')">Næste</button></div>
+    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
+    <div class="ttl">Køretøjer</div><div class="sub" style="margin-bottom:26px">Vælg de køretøjer de ejer, leaser eller bruger.</div>
+
+    <div class="sl" style="margin-top:0">Biler</div>
+    <div class="olist">
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128663;</span><div class="oc-c"><div class="ol">Bil</div><div class="od">Benzin- eller dieselbil</div></div><div class="chk"></div></div>
+      <div class="oli sel" onclick="togM(this)"><span class="oi">&#9889;</span><div class="oc-c"><div class="ol">Elbil</div><div class="od">Elektrisk bil</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128661;</span><div class="oc-c"><div class="ol">Hybrid</div><div class="od">Hybridbil</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128203;</span><div class="oc-c"><div class="ol">Leasingbil</div><div class="od">Privat- eller erhvervsleasing</div></div><div class="chk"></div></div>
+    </div>
+
+    <div class="sl">Tohjulede & andet</div>
+    <div class="olist">
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128690;</span><div class="oc-c"><div class="ol">El-cykel / speed pedelec</div><div class="od">Ejer elektrisk cykel</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#127949;</span><div class="oc-c"><div class="ol">Motorcykel / scooter</div><div class="od">Ejer motorcykel eller scooter</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128652;</span><div class="oc-c"><div class="ol">Autocamper / campingvogn</div><div class="od">Ejer autocamper eller campingvogn</div></div><div class="chk"></div></div>
+    </div>
+
+    <div class="sl">Andet</div>
+    <div class="olist">
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128646;</span><div class="oc-c"><div class="ol">Offentlig transport</div><div class="od">Bus, tog eller metro</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi">&#128690;</span><div class="oc-c"><div class="ol">Cykel</div><div class="od">Almindelig eller el-cykel</div></div><div class="chk"></div></div>
+    </div>
+
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p4')">Næste</button></div>
   </div>
 
-  <!-- PROFILE 4 -->
+  <!-- PROFILE 4: LÅN -->
   <div class="scr scr-profile" id="s-p4">
     <div class="hdr"><button class="back" onclick="go('s-p3')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div></div>
-    <div class="ttl">Opsparing & mere</div><div class="sub" style="margin-bottom:26px">Sidste trin!</div>
+    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div></div>
+    <div class="ttl">Lån</div><div class="sub" style="margin-bottom:26px">Angiv lån tilknyttet dine boliger og køretøjer.</div>
+
+    <!-- Contextual loan section for Andelsbolig (from housing) -->
+    <div class="sl" style="margin-top:0">Andelsbolig</div>
+    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:16px;">
+      <div class="fg"><label class="fl">Låntyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Andelslån</div><div class="chip" onclick="this.classList.toggle('sel')">Boliglån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div></div></div>
+      <div class="fg" style="margin-top:14px"><label class="fl">Restgæld</label><div class="rv"><span class="rv-n" id="debt-andel">1.4</span><span class="rv-u">mio. kr.</span></div><input class="rng" type="range" min="0" max="60" value="14" oninput="document.getElementById('debt-andel').textContent=(this.value/10).toFixed(1)"><div class="rng-l"><span>0</span><span>6.000.000+</span></div></div>
+      <div class="fg" style="margin-top:14px"><label class="fl">Friværdi (anslået)</label><div class="rv"><span class="rv-n" id="eq-andel">0.8</span><span class="rv-u">mio. kr.</span></div><div style="font-size:12px;color:var(--text3);margin-top:8px;">Beregnes automatisk</div></div>
+      <div class="fg" style="margin-top:14px"><label class="fl">Rentetype</label><div class="og"><div class="oc sel" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Fast rente</span></div><div class="oc" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Variabel</span></div></div></div>
+    </div>
+
+    <!-- Contextual loan section for Elbil (from vehicles) -->
+    <div class="sl">Elbil</div>
+    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:16px;">
+      <div class="fg"><label class="fl">Låntyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Billån</div><div class="chip" onclick="this.classList.toggle('sel')">Forbrugslån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div></div></div>
+      <div class="fg" style="margin-top:14px"><label class="fl">Restgæld</label><div class="rv"><span class="rv-n" id="debt-elbil">0.3</span><span class="rv-u">mio. kr.</span></div><input class="rng" type="range" min="0" max="20" value="3" oninput="document.getElementById('debt-elbil').textContent=(this.value/10).toFixed(1)"><div class="rng-l"><span>0</span><span>2.000.000+</span></div></div>
+      <div class="fg" style="margin-top:14px"><label class="fl">Rentetype</label><div class="og"><div class="oc" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Fast rente</span></div><div class="oc sel" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Variabel</span></div></div></div>
+    </div>
+
+    <!-- Other loans -->
+    <div class="sl">Øvrige lån</div>
+    <div class="fg"><div class="chips"><div class="chip" onclick="this.classList.toggle('sel')">SU-lån</div><div class="chip" onclick="this.classList.toggle('sel')">Forbrugslån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div><div class="chip" onclick="this.classList.toggle('sel')">Studielån</div></div></div>
+
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p5')">Næste</button></div>
+  </div>
+
+  <!-- PROFILE 5: OPSPARING & MERE -->
+  <div class="scr scr-profile" id="s-p5">
+    <div class="hdr"><button class="back" onclick="go('s-p4')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
+    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div></div>
+    <div class="ttl">Opsparing & mere</div><div class="sub" style="margin-bottom:26px">Fortæl os om dine opsparinger og forsikringer.</div>
     <div class="fg"><label class="fl">Opsparingstyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Aktiesparekonto</div><div class="chip" onclick="this.classList.toggle('sel')">Pension</div><div class="chip sel" onclick="this.classList.toggle('sel')">Friværdi</div><div class="chip" onclick="this.classList.toggle('sel')">Krypto</div><div class="chip" onclick="this.classList.toggle('sel')">Ratepension</div><div class="chip" onclick="this.classList.toggle('sel')">Aldersopsparing</div></div></div>
     <div class="sl">Forsikringer</div>
-    <div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Indboforsikring</div><div class="chip sel" onclick="this.classList.toggle('sel')">Bilforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Sundhedsforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Livsforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Rejseforsikring</div></div>
-    <div class="sl">Notifikationer</div>
-    <div style="background:var(--surface);border-radius:var(--rm);padding:4px 16px;border:1px solid var(--border)">
-      <div class="trow"><div><div class="trow-l">Breaking nyheder</div><div class="trow-s">Vigtige økonomiske nyheder</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
-      <div class="trow"><div><div class="trow-l">Daglig opsamling</div><div class="trow-s">Morgenoversigt kl. 07:30</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
-      <div class="trow"><div><div class="trow-l">AI-indsigter</div><div class="trow-s">Personlige analysebeskeder</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
+    <div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Indboforsikring</div><div class="chip sel" onclick="this.classList.toggle('sel')">Bilforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Ulykkesforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Sundhedsforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Livsforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Rejseforsikring</div></div>
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p6')">Næste</button></div>
+  </div>
+
+  <!-- PROFILE 6: BEKRÆFTELSE -->
+  <div class="scr scr-profile" id="s-p6">
+    <div class="hdr"><button class="back" onclick="go('s-p5')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
+    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div></div>
+    <div class="ttl">Opsummering</div><div class="sub" style="margin-bottom:26px">Bekræft dine oplysninger og opret din profil.</div>
+
+    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Grundlæggende</div>
+      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Alder</span><span style="font-size:13px;color:var(--amber);font-weight:600;">32 år</span></div>
+      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Region</span><span style="font-size:13px;color:var(--amber);font-weight:600;">Hovedstaden</span></div>
+      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Indkomst</span><span style="font-size:13px;color:var(--amber);font-weight:600;">450.000 kr.</span></div>
     </div>
-    <div style="height:80px"></div><div class="fbot"><button class="btn-p" onclick="go('s-loading')">Færdig - opret min profil</button></div>
+    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:14px;">
+      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Bolig & køretøjer</div>
+      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Andelsbolig</span><span style="font-size:13px;color:var(--amber);font-weight:600;">2,2 mio. kr.</span></div>
+      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Elbil</span><span style="font-size:13px;color:var(--amber);font-weight:600;">Ejet</span></div>
+    </div>
+
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-loading')">Færdig - opret min profil</button></div>
   </div>
 
   <!-- LOADING -->
@@ -376,16 +472,6 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
     <div class="load-scene" id="load-scene">
       <!-- Orbit ring -->
       <div class="orbit-ring"></div>
-
-      <!-- Tentacle reach lines -->
-      <div class="tentacle t-0" id="tent-0"></div>
-      <div class="tentacle t-1" id="tent-1"></div>
-      <div class="tentacle t-2" id="tent-2"></div>
-      <div class="tentacle t-3" id="tent-3"></div>
-      <div class="tentacle t-4" id="tent-4"></div>
-      <div class="tentacle t-5" id="tent-5"></div>
-      <div class="tentacle t-6" id="tent-6"></div>
-      <div class="tentacle t-7" id="tent-7"></div>
 
       <!-- Source bubbles -->
       <div class="src-bubble sb-0" id="sb-0">ECB</div>
@@ -467,20 +553,187 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 
 <!-- Demo nav -->
 <div class="dnav">
-  <button class="on" data-s="s-welcome">Velkommen</button>
-  <button data-s="s-signup">Tilmeld</button>
-  <button data-s="s-p1">Profil 1</button>
-  <button data-s="s-p2">Profil 2</button>
-  <button data-s="s-p3">Profil 3</button>
-  <button data-s="s-p4">Profil 4</button>
-  <button data-s="s-loading">Loading</button>
-  <button data-s="s-feed">Feed</button>
+  <button class="on" data-s="s-welcome">1. Velkommen</button>
+  <button data-s="s-signup">2. Tilmeld</button>
+  <button data-s="s-intro">3. Intro</button>
+  <button data-s="s-p1">4. Grundlag</button>
+  <button data-s="s-p2">5. Bolig</button>
+  <button data-s="s-p3">6. Køretøjer</button>
+  <button data-s="s-p4">7. Lån</button>
+  <button data-s="s-p5">8. Opsparing</button>
+  <button data-s="s-p6">9. Opsummering</button>
+  <button data-s="s-loading">10. Loading</button>
+  <button data-s="s-feed">11. Feed</button>
 </div>
 
 <script>
+/* ── TentacleAnimator ─────────────────────────────────────────
+   Modular, reusable SVG tentacle animation engine.
+   - Uses requestAnimationFrame for smooth 60fps
+   - Organic cubic-bezier paths with live wobble
+   - Reach / impact / retract phases
+   - Loop-ready via reset()
+   ──────────────────────────────────────────────────────────── */
+class TentacleAnimator {
+  constructor(sceneEl){
+    this.scene=sceneEl;
+    this.cx=150;this.cy=150;
+    this.svg=null;
+    this.arms=[];
+    // Target positions matching bubble CSS positions (300x300 grid)
+    this.targets=[
+      {x:150,y:24},{x:260,y:52},{x:276,y:150},{x:260,y:248},
+      {x:150,y:276},{x:40,y:248},{x:24,y:150},{x:40,y:52}
+    ];
+    this._init();
+  }
+
+  _init(){
+    const NS='http://www.w3.org/2000/svg';
+    this.svg=document.createElementNS(NS,'svg');
+    this.svg.setAttribute('viewBox','0 0 300 300');
+    this.svg.setAttribute('class','tent-svg');
+
+    // Glow filter
+    const defs=document.createElementNS(NS,'defs');
+    defs.innerHTML='<filter id="tGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
+    this.svg.appendChild(defs);
+
+    for(let i=0;i<8;i++){
+      const glow=this._makePath('rgba(240,160,48,0.25)',10,true);
+      const main=this._makePath('rgba(240,160,48,0.85)',4,false);
+      const tip=document.createElementNS(NS,'circle');
+      tip.setAttribute('r','5');tip.setAttribute('fill','rgba(240,160,48,0.9)');
+      tip.setAttribute('cx','0');tip.setAttribute('cy','0');tip.style.opacity='0';
+      tip.style.filter='drop-shadow(0 0 6px rgba(240,160,48,0.8))';
+      this.svg.appendChild(glow);this.svg.appendChild(main);this.svg.appendChild(tip);
+      this.arms.push({glow,main,tip,target:this.targets[i]});
+    }
+    this.scene.insertBefore(this.svg,this.scene.firstChild);
+  }
+
+  _makePath(color,width,isGlow){
+    const NS='http://www.w3.org/2000/svg';
+    const p=document.createElementNS(NS,'path');
+    p.setAttribute('fill','none');
+    p.setAttribute('stroke',color);
+    p.setAttribute('stroke-width',String(width));
+    p.setAttribute('stroke-linecap','round');
+    if(isGlow)p.setAttribute('filter','url(#tGlow)');
+    return p;
+  }
+
+  // Build organic cubic bezier from center → progress toward target
+  _buildPath(idx,progress,time){
+    const t=this.arms[idx].target;
+    const dx=t.x-this.cx,dy=t.y-this.cy;
+    const len=Math.sqrt(dx*dx+dy*dy)||1;
+    const nx=-dy/len,ny=dx/len;
+
+    // endpoint
+    const ex=this.cx+dx*progress,ey=this.cy+dy*progress;
+
+    // wobble (organic feel)
+    const w1=Math.sin(time*0.005+idx*1.3)*10*progress;
+    const w2=Math.cos(time*0.004+idx*0.9)*7*progress;
+
+    // control points with perpendicular offset + wobble
+    const cp1x=this.cx+dx*0.3*progress+nx*w1;
+    const cp1y=this.cy+dy*0.3*progress+ny*w1;
+    const cp2x=this.cx+dx*0.65*progress-nx*w2*0.6;
+    const cp2y=this.cy+dy*0.65*progress-ny*w2*0.6;
+
+    return {d:`M${this.cx},${this.cy} C${cp1x},${cp1y} ${cp2x},${cp2y} ${ex},${ey}`,ex,ey};
+  }
+
+  // Ease-out with slight overshoot bounce
+  _easeOutBounce(t){
+    if(t<0.75) return 1-Math.pow(1-t/0.75,3);
+    const b=(t-0.75)/0.25;
+    return 1+Math.sin(b*Math.PI)*0.08;
+  }
+
+  // Reach: grow tentacle from center to target
+  reach(idx){
+    return new Promise(resolve=>{
+      const dur=550;
+      const start=performance.now();
+      const arm=this.arms[idx];
+      arm.tip.style.opacity='1';
+
+      const tick=(now)=>{
+        const raw=Math.min((now-start)/dur,1);
+        const p=Math.min(this._easeOutBounce(raw),1);
+        const {d,ex,ey}=this._buildPath(idx,p,now);
+        arm.main.setAttribute('d',d);
+        arm.glow.setAttribute('d',d);
+        arm.tip.setAttribute('cx',ex);
+        arm.tip.setAttribute('cy',ey);
+        if(raw<1)requestAnimationFrame(tick);
+        else resolve();
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // Retract: shrink tentacle back to center
+  retract(idx){
+    return new Promise(resolve=>{
+      const dur=380;
+      const start=performance.now();
+      const arm=this.arms[idx];
+
+      const tick=(now)=>{
+        const raw=Math.min((now-start)/dur,1);
+        const p=1-raw*raw; // ease-in retract
+        const {d,ex,ey}=this._buildPath(idx,p,now);
+        arm.main.setAttribute('d',d);
+        arm.glow.setAttribute('d',d);
+        arm.tip.setAttribute('cx',ex);
+        arm.tip.setAttribute('cy',ey);
+        arm.tip.style.opacity=String(p);
+        if(raw<1)requestAnimationFrame(tick);
+        else{
+          arm.main.setAttribute('d','');
+          arm.glow.setAttribute('d','');
+          arm.tip.style.opacity='0';
+          resolve();
+        }
+      };
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // Full grab: reach → impact callback → retract
+  async grab(idx,onImpact){
+    await this.reach(idx);
+    if(onImpact)onImpact(idx);
+    await new Promise(r=>setTimeout(r,220));
+    await this.retract(idx);
+  }
+
+  // Reset all arms (for looping)
+  reset(){
+    this.arms.forEach(a=>{
+      a.main.setAttribute('d','');
+      a.glow.setAttribute('d','');
+      a.tip.style.opacity='0';
+    });
+  }
+
+  destroy(){
+    if(this.svg&&this.svg.parentNode)this.svg.remove();
+  }
+}
+
+/* ── App ────────────────────────────────────────────────────── */
 let loadT=null;
+let tentAnimator=null;
+let loadAborted=false;
+
 function go(id){
   if(loadT){clearTimeout(loadT);loadT=null;}
+  loadAborted=true;
   document.querySelectorAll('.scr').forEach(s=>s.classList.remove('on'));
   document.getElementById(id).classList.add('on');
   document.getElementById(id).scrollTop=0;
@@ -494,6 +747,7 @@ document.querySelectorAll('.dnav button').forEach(b=>{
 });
 
 function runLoad(){
+  loadAborted=false;
   const steps=['ls1','ls2','ls3','ls4'];
   const titles=[
     ['Opretter profil...','Okto rækker ud efter relevante kilder til dig'],
@@ -505,72 +759,95 @@ function runLoad(){
   const tEl=document.getElementById('load-title');
   const sEl=document.getElementById('load-sub');
   const countEl=document.getElementById('grabbed-count');
+  const octo=document.getElementById('load-scene').querySelector('.load-octo');
+
+  // Reset state
   steps.forEach(s=>document.getElementById(s).classList.remove('done'));
   fill.style.width='0%';
-  for(let j=0;j<8;j++){
-    document.getElementById('sb-'+j).classList.remove('visible','grabbed');
-    document.getElementById('tent-'+j).classList.remove('active');
-  }
+  for(let j=0;j<8;j++) document.getElementById('sb-'+j).classList.remove('visible','grabbed');
   countEl.textContent='0';
+
+  // Init tentacle animator
+  if(tentAnimator)tentAnimator.destroy();
+  tentAnimator=new TentacleAnimator(document.getElementById('load-scene'));
+
   let grabbed=0;
+
   // Bubbles appear
   for(let j=0;j<8;j++){
-    setTimeout(()=>{document.getElementById('sb-'+j).classList.add('visible');},300+j*150);
+    setTimeout(()=>{
+      if(!loadAborted) document.getElementById('sb-'+j).classList.add('visible');
+    },300+j*150);
   }
+
   // Step 1
   setTimeout(()=>{
+    if(loadAborted)return;
     document.getElementById('ls1').classList.add('done');
     tEl.textContent=titles[0][0];sEl.textContent=titles[0][1];fill.style.width='10%';
   },500);
+
   // Step 2 + grab sequence
   setTimeout(()=>{
+    if(loadAborted)return;
     tEl.textContent=titles[1][0];sEl.textContent=titles[1][1];
     document.getElementById('ls2').classList.add('done');fill.style.width='25%';
-    var order=[0,2,5,1,6,3,7,4];
+
+    const order=[0,2,5,1,6,3,7,4];
     order.forEach((idx,seq)=>{
-      setTimeout(()=>{
-        document.getElementById('tent-'+idx).classList.add('active');
-        setTimeout(()=>{
+      setTimeout(async()=>{
+        if(loadAborted)return;
+        octo.classList.add('grabbing');
+        await tentAnimator.grab(idx,()=>{
+          if(loadAborted)return;
           document.getElementById('sb-'+idx).classList.add('grabbed');
           grabbed++;countEl.textContent=grabbed;
           fill.style.width=(25+grabbed*6)+'%';
           spawnParticles(idx);
-        },600);
-      },seq*400);
+        });
+        octo.classList.remove('grabbing');
+      },seq*420);
     });
   },1800);
+
   // Step 3
   setTimeout(()=>{
+    if(loadAborted)return;
     tEl.textContent=titles[2][0];sEl.textContent=titles[2][1];
     document.getElementById('ls3').classList.add('done');fill.style.width='80%';
-  },5600);
+  },5800);
+
   // Step 4
   setTimeout(()=>{
+    if(loadAborted)return;
     tEl.textContent=titles[3][0];sEl.textContent=titles[3][1];
     document.getElementById('ls4').classList.add('done');fill.style.width='95%';
-  },7000);
+  },7200);
+
   // Done
   loadT=setTimeout(()=>{
+    if(loadAborted)return;
     fill.style.width='100%';
     tEl.textContent='Dit feed er klar!';
     sEl.textContent='Vi fandt 12 relevante nyheder til dig i dag';
     loadT=setTimeout(()=>go('s-feed'),1200);
-  },8200);
+  },8400);
 }
+
 function spawnParticles(idx){
   const scene=document.getElementById('load-scene');
   const sb=document.getElementById('sb-'+idx);
   const rect=sb.getBoundingClientRect();
   const sr=scene.getBoundingClientRect();
   const sx=rect.left+rect.width/2-sr.left,sy=rect.top+rect.height/2-sr.top;
-  for(let p=0;p<4;p++){
+  for(let p=0;p<6;p++){
     const d=document.createElement('div');d.className='particle';
     d.style.left=sx+'px';d.style.top=sy+'px';
-    d.style.setProperty('--dx',(150-sx+(Math.random()*20-10))+'px');
-    d.style.setProperty('--dy',(150-sy+(Math.random()*20-10))+'px');
-    d.style.animation='flyToCenter 0.6s '+p*0.08+'s ease-in forwards';
-    d.style.width=(3+Math.random()*3)+'px';d.style.height=d.style.width;
-    scene.appendChild(d);setTimeout(()=>d.remove(),800);
+    d.style.setProperty('--dx',(150-sx+(Math.random()*30-15))+'px');
+    d.style.setProperty('--dy',(150-sy+(Math.random()*30-15))+'px');
+    d.style.animation='flyToCenter 0.7s '+p*0.06+'s ease-in forwards';
+    d.style.width=(3+Math.random()*4)+'px';d.style.height=d.style.width;
+    scene.appendChild(d);setTimeout(()=>d.remove(),900);
   }
 }
 
@@ -581,6 +858,15 @@ function togC(el){
 function togL(el){
   el.parentElement.querySelectorAll('.oli').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
+}
+function togM(el){
+  el.classList.toggle('sel');
+}
+function togPw(btn,id){
+  const inp=document.getElementById(id);
+  const show=inp.type==='password';
+  inp.type=show?'text':'password';
+  btn.classList.toggle('hidden',!show);
 }
 function stp(id,d){
   const el=document.getElementById(id);
