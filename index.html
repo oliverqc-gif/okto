@@ -88,14 +88,17 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .oc{padding:16px 12px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--rm);cursor:pointer;transition:all 0.2s;text-align:center;}
 .oc:hover{border-color:var(--amber);background:var(--surface2);}
 .oc.sel{border-color:var(--amber);background:rgba(240,160,48,0.08);box-shadow:0 0 0 1px var(--amber),var(--glow);}
-.oc .oi{font-size:28px;margin-bottom:8px;display:block;}
+.oc .oi{margin-bottom:8px;display:flex;align-items:center;justify-content:center;}
+.oc .oi svg{width:28px;height:28px;stroke:var(--amber);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
 .oc .ol{font-size:13px;font-weight:600;color:var(--text);line-height:1.3;}
 
 .olist{display:flex;flex-direction:column;gap:10px;margin-bottom:22px;}
 .oli{display:flex;align-items:center;gap:14px;padding:16px;background:var(--surface);border:1.5px solid var(--border);border-radius:var(--rm);cursor:pointer;transition:all 0.2s;}
 .oli:hover{border-color:var(--amber);}
 .oli.sel{border-color:var(--amber);background:rgba(240,160,48,0.08);box-shadow:var(--glow);}
-.oli .oi{font-size:24px;flex-shrink:0;}
+.oli .oi{flex-shrink:0;width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:rgba(240,160,48,0.08);border-radius:12px;}
+.oli .oi svg{width:24px;height:24px;stroke:var(--amber);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;}
+.oli.sel .oi{background:rgba(240,160,48,0.15);}
 .oli .oc-c{flex:1;}
 .oli .ol{font-size:14px;font-weight:600;color:var(--text);}
 .oli .od{font-size:12px;color:var(--text2);margin-top:2px;}
@@ -138,70 +141,61 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .fbot{padding:16px 28px 40px;}
 
 /* Loading */
-.scr-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px 28px;background:radial-gradient(ellipse at 50% 35%,rgba(240,160,48,0.06),var(--bg) 70%);overflow:hidden;}
+.scr-loading{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:40px 28px;background:radial-gradient(ellipse at 50% 30%,rgba(240,160,48,0.06),var(--bg) 70%);overflow:hidden;}
 
-.load-scene{position:relative;width:300px;height:300px;margin-bottom:20px;}
+/* Mascot scene */
+.load-scene{position:relative;width:280px;height:240px;margin-bottom:16px;display:flex;align-items:center;justify-content:center;}
 
-/* Okto in center */
-.load-octo{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:10;transition:transform 0.6s ease-in-out;}
-.load-octo img{width:110px;height:110px;object-fit:contain;animation:octoPulse 2s ease-in-out infinite;filter:drop-shadow(0 0 20px rgba(240,160,48,0.3));transition:transform 0.6s ease-in-out;}
-.load-octo.grabbing{transform:translate(-50%,-50%) scale(1.1);}
-.load-octo.grabbing img{transform:scale(1.05);}
-@keyframes octoPulse{0%,100%{transform:scale(1) translateY(0)}50%{transform:scale(1.05) translateY(-4px)}}
-
-/* Orbiting ring */
-.orbit-ring{position:absolute;inset:10px;border-radius:50%;border:1px dashed rgba(240,160,48,0.12);animation:spin 20s linear infinite;}
-
-/* SVG Tentacle overlay */
-.tent-svg{position:absolute;inset:0;width:300px;height:300px;z-index:5;pointer-events:none;}
-
-/* Floating news source bubbles */
-.src-bubble{
-  position:absolute;width:44px;height:44px;border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  font-size:9px;font-weight:700;letter-spacing:0.3px;text-transform:uppercase;
-  border:2px solid var(--border);background:var(--surface);color:var(--text2);
-  opacity:0;transform:scale(0.3);transition:all 0.6s cubic-bezier(0.34,1.56,0.64,1);
-  box-shadow:0 2px 12px rgba(0,0,0,0.3);
+/* Mascot image */
+.load-mascot{width:140px;height:140px;object-fit:contain;filter:drop-shadow(0 0 24px rgba(240,160,48,0.2));opacity:0;transform:scale(0.5);transition:opacity 0.6s,transform 0.6s cubic-bezier(0.34,1.56,0.64,1);}
+.load-mascot.show{opacity:1;transform:scale(1);}
+.load-mascot.reading{animation:oktoRead 3s ease-in-out infinite;}
+.load-mascot.excited{animation:oktoExcited 0.6s ease-in-out infinite;}
+@keyframes oktoRead{
+  0%,100%{transform:translateY(0) rotate(0deg)}
+  20%{transform:translateY(-6px) rotate(-2deg)}
+  50%{transform:translateY(-3px) rotate(1.5deg)}
+  80%{transform:translateY(-7px) rotate(-1deg)}
 }
-.src-bubble.visible{opacity:1;transform:scale(1);}
-.src-bubble.grabbed{
-  border-color:var(--amber);background:rgba(240,160,48,0.15);color:var(--amber);
-  box-shadow:0 0 16px rgba(240,160,48,0.2);
-  animation:bubbleGrab 0.5s cubic-bezier(0.34,1.56,0.64,1);
-}
-@keyframes bubbleGrab{
-  0%{transform:scale(1);}
-  50%{transform:scale(1.15);}
-  100%{transform:scale(1);}
+@keyframes oktoExcited{
+  0%,100%{transform:translateY(0) scale(1)}
+  25%{transform:translateY(-8px) scale(1.05)}
+  50%{transform:translateY(-2px) scale(0.97)}
+  75%{transform:translateY(-10px) scale(1.04)}
 }
 
-/* Position bubbles around the circle */
-.sb-0{top:2px;left:50%;margin-left:-22px;}
-.sb-1{top:30px;right:18px;}
-.sb-2{top:50%;right:2px;margin-top:-22px;}
-.sb-3{bottom:30px;right:18px;}
-.sb-4{bottom:2px;left:50%;margin-left:-22px;}
-.sb-5{bottom:30px;left:18px;}
-.sb-6{top:50%;left:2px;margin-top:-22px;}
-.sb-7{top:30px;left:18px;}
+/* Floating screens/papers around mascot */
+.float-prop{position:absolute;border-radius:6px;background:var(--surface);border:1.5px solid var(--border-lt);opacity:0;transform:scale(0.3);transition:all 0.5s cubic-bezier(0.34,1.56,0.64,1);overflow:hidden;}
+.float-prop.show{opacity:1;transform:scale(1);}
+.float-prop.grabbed{border-color:var(--amber);box-shadow:0 0 12px rgba(240,160,48,0.2);}
 
-/* Particles flying toward center when grabbed */
-.particle{
-  position:absolute;width:4px;height:4px;border-radius:50%;
-  background:var(--amber);opacity:0;pointer-events:none;
-}
-@keyframes flyToCenter{
-  0%{opacity:0.8;transform:translate(0,0) scale(1)}
-  100%{opacity:0;transform:translate(var(--dx),var(--dy)) scale(0)}
-}
+/* Screen props — small rectangles with "text lines" */
+.fp-screen{width:52px;height:40px;padding:6px;}
+.fp-line{height:3px;border-radius:2px;background:var(--border-lt);margin-bottom:3px;transition:background 0.4s;}
+.fp-line:last-child{margin-bottom:0;width:70%;}
+.float-prop.grabbed .fp-line{background:var(--amber);opacity:0.5;}
+.float-prop.grabbed .fp-line:first-child{opacity:0.8;}
 
-/* Captured data counter */
-.load-counter{
-  font-family:'Space Mono',monospace;font-size:13px;color:var(--amber);
-  text-align:center;margin-bottom:6px;opacity:0.8;
-}
-.load-counter span{font-size:20px;font-weight:700;}
+/* Prop positions */
+.fp-0{top:10px;left:20px;animation:fpFloat1 4s ease-in-out infinite;}
+.fp-1{top:0;right:30px;animation:fpFloat2 3.5s ease-in-out infinite;}
+.fp-2{top:50%;right:0;margin-top:-20px;animation:fpFloat3 4.2s ease-in-out infinite;}
+.fp-3{bottom:15px;right:25px;animation:fpFloat1 3.8s ease-in-out infinite 0.5s;}
+.fp-4{bottom:10px;left:25px;animation:fpFloat2 4s ease-in-out infinite 0.3s;}
+.fp-5{top:50%;left:0;margin-top:-20px;animation:fpFloat3 3.6s ease-in-out infinite 0.7s;}
+
+@keyframes fpFloat1{0%,100%{transform:translateY(0) rotate(-3deg)}50%{transform:translateY(-8px) rotate(2deg)}}
+@keyframes fpFloat2{0%,100%{transform:translateY(0) rotate(2deg)}50%{transform:translateY(-6px) rotate(-3deg)}}
+@keyframes fpFloat3{0%,100%{transform:translateY(0) rotate(0deg)}50%{transform:translateY(-10px) rotate(1deg)}}
+
+/* Source labels on screens */
+.fp-src{font-size:7px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text3);margin-bottom:4px;transition:color 0.4s;}
+.float-prop.grabbed .fp-src{color:var(--amber);}
+
+/* Ambient glow ring */
+.load-glow{position:absolute;width:200px;height:200px;border-radius:50%;border:1px dashed rgba(240,160,48,0.08);animation:glowSpin 25s linear infinite;}
+@keyframes glowSpin{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+
 .load-title{font-family:'Fraunces',serif;font-size:18px;font-weight:700;color:var(--amber);margin-bottom:12px;text-align:center;line-height:1.6;}
 .load-sub{font-size:14px;color:var(--text2);text-align:center;line-height:1.5;max-width:260px;margin-bottom:36px;}
 .load-steps{width:100%;max-width:280px;display:flex;flex-direction:column;gap:16px;}
@@ -288,19 +282,66 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 .dnav button{padding:7px 11px;background:transparent;color:rgba(240,235,224,0.35);border:none;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;cursor:pointer;transition:all 0.2s;white-space:nowrap;}
 .dnav button:hover{color:rgba(240,235,224,0.6);}
 .dnav button.on{background:rgba(240,160,48,0.15);color:var(--amber);font-weight:600;}
+
+/* Splash */
+.scr-splash{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;background:#0E0A12;overflow:hidden;}
+.splash-glow{position:absolute;inset:0;background:radial-gradient(ellipse at 50% 35%,rgba(240,160,48,0.08),transparent 70%);opacity:0;transition:opacity 0.8s ease-out;}
+.splash-glow.show{opacity:1;}
+.splash-mascot{width:160px;height:160px;object-fit:contain;filter:drop-shadow(0 8px 32px rgba(240,160,48,0.25));opacity:0;transform:scale(0.3);transition:none;pointer-events:none;}
+.splash-mascot.show{opacity:1;transform:scale(1);animation:splashBounceIn 0.8s cubic-bezier(0.34,1.56,0.64,1) forwards;}
+.splash-mascot.bob{animation:bob 3s ease-in-out infinite;}
+@keyframes splashBounceIn{0%{opacity:0;transform:scale(0.3)}40%{opacity:1;transform:scale(1.08)}70%{transform:scale(0.95)}100%{opacity:1;transform:scale(1)}}
+.scr-splash .splash-fade{opacity:0;transform:translateY(0);transition:opacity 0.6s ease-out;}
+.scr-splash.fading{opacity:0;transition:opacity 0.6s ease-out;}
+
+/* Info card on welcome screen */
+.info-pill{display:flex;align-items:center;gap:8px;margin-top:28px;padding:10px 20px;background:var(--surface);border:1px solid var(--border-lt);border-radius:40px;cursor:pointer;transition:all 0.25s;color:var(--text2);font-size:13px;font-weight:500;}
+.info-pill:hover{border-color:var(--amber);color:var(--amber);}
+.info-pill svg{width:16px;height:16px;flex-shrink:0;opacity:0.7;}
+.info-overlay{position:absolute;inset:0;background:rgba(14,10,18,0.7);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);z-index:100;display:flex;align-items:flex-end;opacity:0;pointer-events:none;transition:opacity 0.3s ease-out;}
+.info-overlay.open{opacity:1;pointer-events:all;}
+.info-sheet{width:100%;max-height:0;background:var(--surface);border-top:2px solid var(--amber);border-radius:24px 24px 0 0;padding:0 28px;overflow:hidden;transition:max-height 0.4s cubic-bezier(0.4,0,0.2,1),padding 0.4s cubic-bezier(0.4,0,0.2,1);}
+.info-overlay.open .info-sheet{max-height:70%;padding:28px 28px 40px;}
+.info-sheet-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+.info-sheet-title{font-family:'Fraunces',serif;font-size:20px;font-weight:700;color:var(--amber);}
+.info-close{background:none;border:none;color:var(--text3);cursor:pointer;padding:4px;display:flex;align-items:center;justify-content:center;transition:color 0.2s;}
+.info-close:hover{color:var(--text);}
+.info-close svg{width:20px;height:20px;}
+.info-body p{font-size:14px;color:var(--text2);line-height:1.75;margin-bottom:16px;}
+.info-body p:last-child{margin-bottom:0;}
 </style>
 </head>
 <body>
 <div class="phone">
   <div class="sbar"><span>14:32</span><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 8.2C4.7 4.5 8.2 3 12 3s7.3 1.5 11 5.2"/><path d="M5 12.1c2.3-2 4.6-3.1 7-3.1s4.7 1.1 7 3.1"/><path d="M9 16c1.5-1.2 2.7-1.5 3-1.5s1.5.3 3 1.5"/><circle cx="12" cy="19" r="1" fill="currentColor"/></svg><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="18" height="12" rx="2"/><path d="M22 10v4"/></svg></div></div>
 
+  <!-- SPLASH -->
+  <div class="scr scr-splash on" id="s-splash">
+    <div class="splash-glow" id="splash-glow"></div>
+    <img src="okto-mascot.png" class="splash-mascot" id="splash-mascot" alt="Okto">
+  </div>
+
   <!-- WELCOME -->
-  <div class="scr scr-welcome on" id="s-welcome">
+  <div class="scr scr-welcome" id="s-welcome">
     <img src="okto-mascot.png" class="mascot-lg" alt="Okto">
     <div class="welcome-logo">Okto</div>
     <div class="welcome-tagline" style="max-width:340px;white-space:nowrap;">Fang de vigtige nyheder.</div>
     <button class="btn-p" onclick="go('s-signup')">Opret konto</button>
     <button class="btn-s" onclick="go('s-signup')">Log ind</button>
+    <div class="info-pill" onclick="toggleInfo()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>Hvad er Okto?</div>
+    <!-- Info overlay -->
+    <div class="info-overlay" id="info-overlay" onclick="closeInfoOutside(event)">
+      <div class="info-sheet">
+        <div class="info-sheet-header">
+          <div class="info-sheet-title">Hvad er Okto?</div>
+          <button class="info-close" onclick="toggleInfo()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
+        </div>
+        <div class="info-body">
+          <p>Med hjælp fra Okto får du nyheder, der er relevante for dig og din situation. Hver nyhed kommer med en kort AI-opsummering, så du hurtigt kan læse, hvad der er sket – og hvad det betyder for dig.</p>
+          <p>Ingen reklamer. Ingen clickbait. Ingen støj. Kun relevant indsigt, der sparer dig tid og giver dig et bedre beslutningsgrundlag i hverdagen.</p>
+        </div>
+      </div>
+    </div>
   </div>
 
   <!-- SIGNUP -->
@@ -329,7 +370,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
     <div class="ttl">Grundlæggende oplysninger</div><div class="sub" style="margin-bottom:26px">Fortæl os lidt om dig selv.</div>
     <div class="fg"><label class="fl">Alder</label><div class="rv"><span class="rv-n" id="age-v">32</span><span class="rv-u">år</span></div><input class="rng" type="range" min="18" max="80" value="32" oninput="document.getElementById('age-v').textContent=this.value"><div class="rng-l"><span>18</span><span>80</span></div></div>
     <div class="fg" style="margin-top:22px"><label class="fl">Region</label><div class="sel-w"><select class="fsel"><option>Hovedstaden</option><option>Midtjylland</option><option>Nordjylland</option><option>Sjælland</option><option>Syddanmark</option></select></div></div>
-    <div class="fg" style="margin-top:18px"><label class="fl">Beskæftigelse</label><div class="og"><div class="oc sel" onclick="togC(this)"><span class="oi">&#128188;</span><span class="ol">Lønmodtager</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#127970;</span><span class="ol">Selvstændig</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#127891;</span><span class="ol">Studerende</span></div><div class="oc" onclick="togC(this)"><span class="oi">&#127796;</span><span class="ol">Pensioneret</span></div></div></div>
+    <div class="fg" style="margin-top:18px"><label class="fl">Beskæftigelse</label><div class="og"><div class="oc sel" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v3"/><path d="M3 12h18"/></svg></span><span class="ol">Lønmodtager</span></div><div class="oc" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/><path d="M3 15h6"/><path d="M13 7h4"/><path d="M13 11h4"/><path d="M13 15h4"/></svg></span><span class="ol">Selvstændig</span></div><div class="oc" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg></span><span class="ol">Studerende</span></div><div class="oc" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg></span><span class="ol">Pensioneret</span></div></div></div>
     <div class="fg" style="margin-top:18px"><label class="fl">Uddannelsesniveau</label><div class="sel-w"><select class="fsel"><option>Grundskole</option><option>Gymnasium / HF</option><option>Erhvervsuddannelse</option><option>Kort videregående</option><option>Mellemlang videregående</option><option>Lang videregående</option><option>Ph.d. / Forsker</option></select></div></div>
     <div class="fg" style="margin-top:20px"><label class="fl">Årlig indkomst før skat</label><div class="rv"><span class="rv-n" id="inc-v">480</span><span class="rv-u">000 kr.</span></div><input class="rng" type="range" min="0" max="2000" step="1" value="480" oninput="document.getElementById('inc-v').textContent=this.value"><div class="rng-l"><span>0</span><span>2.000.000+</span></div></div>
     <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p2')">Næste</button></div>
@@ -343,22 +384,22 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 
     <div class="sl" style="margin-top:0">Egen bolig</div>
     <div class="olist">
-      <div class="oli" onclick="togL(this)"><span class="oi">&#127970;</span><div class="oc-c"><div class="ol">Lejebolig</div><div class="od">Lejer lejlighed eller hus</div></div><div class="chk"></div></div>
-      <div class="oli sel" onclick="togL(this)"><span class="oi">&#127969;</span><div class="oc-c"><div class="ol">Andelsbolig</div><div class="od">Andelslejlighed eller -hus</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togL(this)"><span class="oi">&#127960;</span><div class="oc-c"><div class="ol">Ejerbolig</div><div class="od">Ejerlejlighed eller villa</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togL(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="15" rx="1"/><path d="M4 10h16"/><rect x="8" y="13" width="3" height="4"/><rect x="13" y="13" width="3" height="4"/></svg></span><div class="oc-c"><div class="ol">Lejebolig</div><div class="od">Lejer lejlighed eller hus</div></div><div class="chk"></div></div>
+      <div class="oli sel" onclick="togL(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/></svg></span><div class="oc-c"><div class="ol">Andelsbolig</div><div class="od">Andelslejlighed eller -hus</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togL(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/><path d="M17 7V4h-3"/></svg></span><div class="oc-c"><div class="ol">Ejerbolig</div><div class="od">Ejerlejlighed eller villa</div></div><div class="chk"></div></div>
     </div>
 
     <div class="sl">Fritidsboliger</div>
     <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128682;</span><div class="oc-c"><div class="ol">Sommerhus</div><div class="od">Ejer sommerhus</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#127965;</span><div class="oc-c"><div class="ol">Kolonihave</div><div class="od">Ejer kolonihavehus</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#127758;</span><div class="oc-c"><div class="ol">Feriebolig i udlandet</div><div class="od">Ejer bolig i udlandet</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M12 3L3 14h18L12 3z"/><rect x="9" y="14" width="6" height="7"/><path d="M5 21h14"/></svg></span><div class="oc-c"><div class="ol">Sommerhus</div><div class="od">Ejer sommerhus</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/><path d="M2 21h20"/><circle cx="18" cy="6" r="2" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Kolonihave</div><div class="od">Ejer kolonihavehus</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><ellipse cx="12" cy="12" rx="4" ry="9"/></svg></span><div class="oc-c"><div class="ol">Feriebolig i udlandet</div><div class="od">Ejer bolig i udlandet</div></div><div class="chk"></div></div>
     </div>
 
     <div class="sl">Erhvervsboliger</div>
     <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi">&#127963;</span><div class="oc-c"><div class="ol">Udlejningsejendom</div><div class="od">Ejer bolig der udlejes</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128200;</span><div class="oc-c"><div class="ol">Erhvervsejendom</div><div class="od">Kontor, butik eller lager</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M7 8V5h10v3"/><rect x="7" y="12" width="4" height="3"/><rect x="13" y="12" width="4" height="3"/><path d="M3 21h18"/></svg></span><div class="oc-c"><div class="ol">Udlejningsejendom</div><div class="od">Ejer bolig der udlejes</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="9" height="17" rx="1"/><rect x="13" y="9" width="9" height="12" rx="1"/><rect x="5" y="7" width="3" height="3"/><rect x="5" y="13" width="3" height="3"/><rect x="16" y="12" width="3" height="3"/></svg></span><div class="oc-c"><div class="ol">Erhvervsejendom</div><div class="od">Kontor, butik eller lager</div></div><div class="chk"></div></div>
     </div>
 
     <!-- Dynamic per-property value sliders -->
@@ -383,23 +424,23 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 
     <div class="sl" style="margin-top:0">Biler</div>
     <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128663;</span><div class="oc-c"><div class="ol">Bil</div><div class="od">Benzin- eller dieselbil</div></div><div class="chk"></div></div>
-      <div class="oli sel" onclick="togM(this)"><span class="oi">&#9889;</span><div class="oc-c"><div class="ol">Elbil</div><div class="od">Elektrisk bil</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128661;</span><div class="oc-c"><div class="ol">Hybrid</div><div class="od">Hybridbil</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128203;</span><div class="oc-c"><div class="ol">Leasingbil</div><div class="od">Privat- eller erhvervsleasing</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/></svg></span><div class="oc-c"><div class="ol">Bil</div><div class="od">Benzin- eller dieselbil</div></div><div class="chk"></div></div>
+      <div class="oli sel" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/><path d="M13 4h-2l-1 3h4l-1-3z" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Elbil</div><div class="od">Elektrisk bil</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/><circle cx="12" cy="4.5" r="1.5" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Hybrid</div><div class="od">Hybridbil</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/><path d="M15 4h4M17 2v4" stroke-width="2"/></svg></span><div class="oc-c"><div class="ol">Leasingbil</div><div class="od">Privat- eller erhvervsleasing</div></div><div class="chk"></div></div>
     </div>
 
     <div class="sl">Tohjulede & andet</div>
     <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128690;</span><div class="oc-c"><div class="ol">El-cykel / speed pedelec</div><div class="od">Ejer elektrisk cykel</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#127949;</span><div class="oc-c"><div class="ol">Motorcykel / scooter</div><div class="od">Ejer motorcykel eller scooter</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128652;</span><div class="oc-c"><div class="ol">Autocamper / campingvogn</div><div class="od">Ejer autocamper eller campingvogn</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M8 18h8"/><path d="M12 18V9"/><path d="M12 9l5 3"/><path d="M12 9l-4 5"/><path d="M9 5h6" stroke-width="2"/><path d="M12 5v4"/></svg></span><div class="oc-c"><div class="ol">El-cykel / speed pedelec</div><div class="od">Ejer elektrisk cykel</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M5 18l5-8h4"/><path d="M14 10l5 8"/><path d="M10 10l-1 4h6"/><path d="M14 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span><div class="oc-c"><div class="ol">Motorcykel / scooter</div><div class="od">Ejer motorcykel eller scooter</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><rect x="3" y="10" width="18" height="6" rx="2"/><path d="M3 13h18"/><path d="M5 10V8a1 1 0 0 1 1-1h5v3"/><rect x="15" y="11" width="3" height="2" rx="0.5" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Autocamper / campingvogn</div><div class="od">Ejer autocamper eller campingvogn</div></div><div class="chk"></div></div>
     </div>
 
     <div class="sl">Andet</div>
     <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128646;</span><div class="oc-c"><div class="ol">Offentlig transport</div><div class="od">Bus, tog eller metro</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi">&#128690;</span><div class="oc-c"><div class="ol">Cykel</div><div class="od">Almindelig eller el-cykel</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="10" rx="3"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M3 11h18"/><path d="M7 8h3"/><path d="M9 16v-5"/></svg></span><div class="oc-c"><div class="ol">Offentlig transport</div><div class="od">Bus, tog eller metro</div></div><div class="chk"></div></div>
+      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M8 18h8"/><path d="M12 18V9"/><path d="M12 9l5 3"/><path d="M12 9l-4 5"/><path d="M10 6l2 3 2-3"/></svg></span><div class="oc-c"><div class="ol">Cykel</div><div class="od">Almindelig eller el-cykel</div></div><div class="chk"></div></div>
     </div>
 
     <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p4')">Næste</button></div>
@@ -469,25 +510,23 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 
   <!-- LOADING -->
   <div class="scr scr-loading" id="s-loading">
+
     <div class="load-scene" id="load-scene">
-      <!-- Orbit ring -->
-      <div class="orbit-ring"></div>
+      <!-- Ambient glow ring -->
+      <div class="load-glow"></div>
 
-      <!-- Source bubbles -->
-      <div class="src-bubble sb-0" id="sb-0">ECB</div>
-      <div class="src-bubble sb-1" id="sb-1">DR</div>
-      <div class="src-bubble sb-2" id="sb-2">Børsen</div>
-      <div class="src-bubble sb-3" id="sb-3">Finans</div>
-      <div class="src-bubble sb-4" id="sb-4">Reuters</div>
-      <div class="src-bubble sb-5" id="sb-5">Skat.dk</div>
-      <div class="src-bubble sb-6" id="sb-6">Nordea</div>
-      <div class="src-bubble sb-7" id="sb-7">DST</div>
+      <!-- Floating news screen props -->
+      <div class="float-prop fp-screen fp-0" id="fp-0"><div class="fp-src">ECB</div><div class="fp-line"></div><div class="fp-line"></div><div class="fp-line"></div></div>
+      <div class="float-prop fp-screen fp-1" id="fp-1"><div class="fp-src">DR</div><div class="fp-line"></div><div class="fp-line"></div><div class="fp-line"></div></div>
+      <div class="float-prop fp-screen fp-2" id="fp-2"><div class="fp-src">Børsen</div><div class="fp-line"></div><div class="fp-line"></div><div class="fp-line"></div></div>
+      <div class="float-prop fp-screen fp-3" id="fp-3"><div class="fp-src">Reuters</div><div class="fp-line"></div><div class="fp-line"></div><div class="fp-line"></div></div>
+      <div class="float-prop fp-screen fp-4" id="fp-4"><div class="fp-src">Skat.dk</div><div class="fp-line"></div><div class="fp-line"></div><div class="fp-line"></div></div>
+      <div class="float-prop fp-screen fp-5" id="fp-5"><div class="fp-src">Nordea</div><div class="fp-line"></div><div class="fp-line"></div><div class="fp-line"></div></div>
 
-      <!-- Okto in center -->
-      <div class="load-octo"><img src="okto-mascot.png" alt="Okto"></div>
+      <!-- The actual Okto mascot -->
+      <img src="okto-mascot.png" class="load-mascot" id="load-mascot" alt="Okto">
     </div>
 
-    <div class="load-counter" id="load-counter"><span id="grabbed-count">0</span> kilder scannet</div>
     <div class="load-title" id="load-title">Opretter profil...</div>
     <div class="load-sub" id="load-sub">Okto rækker ud efter relevante kilder til dig</div>
 
@@ -553,7 +592,8 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 
 <!-- Demo nav -->
 <div class="dnav">
-  <button class="on" data-s="s-welcome">1. Velkommen</button>
+  <button class="on" data-s="s-splash">0. Splash</button>
+  <button data-s="s-welcome">1. Velkommen</button>
   <button data-s="s-signup">2. Tilmeld</button>
   <button data-s="s-intro">3. Intro</button>
   <button data-s="s-p1">4. Grundlag</button>
@@ -567,168 +607,8 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;justify-co
 </div>
 
 <script>
-/* ── TentacleAnimator ─────────────────────────────────────────
-   Modular, reusable SVG tentacle animation engine.
-   - Uses requestAnimationFrame for smooth 60fps
-   - Organic cubic-bezier paths with live wobble
-   - Reach / impact / retract phases
-   - Loop-ready via reset()
-   ──────────────────────────────────────────────────────────── */
-class TentacleAnimator {
-  constructor(sceneEl){
-    this.scene=sceneEl;
-    this.cx=150;this.cy=150;
-    this.svg=null;
-    this.arms=[];
-    // Target positions matching bubble CSS positions (300x300 grid)
-    this.targets=[
-      {x:150,y:24},{x:260,y:52},{x:276,y:150},{x:260,y:248},
-      {x:150,y:276},{x:40,y:248},{x:24,y:150},{x:40,y:52}
-    ];
-    this._init();
-  }
-
-  _init(){
-    const NS='http://www.w3.org/2000/svg';
-    this.svg=document.createElementNS(NS,'svg');
-    this.svg.setAttribute('viewBox','0 0 300 300');
-    this.svg.setAttribute('class','tent-svg');
-
-    // Glow filter
-    const defs=document.createElementNS(NS,'defs');
-    defs.innerHTML='<filter id="tGlow"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>';
-    this.svg.appendChild(defs);
-
-    for(let i=0;i<8;i++){
-      const glow=this._makePath('rgba(240,160,48,0.25)',10,true);
-      const main=this._makePath('rgba(240,160,48,0.85)',4,false);
-      const tip=document.createElementNS(NS,'circle');
-      tip.setAttribute('r','5');tip.setAttribute('fill','rgba(240,160,48,0.9)');
-      tip.setAttribute('cx','0');tip.setAttribute('cy','0');tip.style.opacity='0';
-      tip.style.filter='drop-shadow(0 0 6px rgba(240,160,48,0.8))';
-      this.svg.appendChild(glow);this.svg.appendChild(main);this.svg.appendChild(tip);
-      this.arms.push({glow,main,tip,target:this.targets[i]});
-    }
-    this.scene.insertBefore(this.svg,this.scene.firstChild);
-  }
-
-  _makePath(color,width,isGlow){
-    const NS='http://www.w3.org/2000/svg';
-    const p=document.createElementNS(NS,'path');
-    p.setAttribute('fill','none');
-    p.setAttribute('stroke',color);
-    p.setAttribute('stroke-width',String(width));
-    p.setAttribute('stroke-linecap','round');
-    if(isGlow)p.setAttribute('filter','url(#tGlow)');
-    return p;
-  }
-
-  // Build organic cubic bezier from center → progress toward target
-  _buildPath(idx,progress,time){
-    const t=this.arms[idx].target;
-    const dx=t.x-this.cx,dy=t.y-this.cy;
-    const len=Math.sqrt(dx*dx+dy*dy)||1;
-    const nx=-dy/len,ny=dx/len;
-
-    // endpoint
-    const ex=this.cx+dx*progress,ey=this.cy+dy*progress;
-
-    // wobble (organic feel)
-    const w1=Math.sin(time*0.005+idx*1.3)*10*progress;
-    const w2=Math.cos(time*0.004+idx*0.9)*7*progress;
-
-    // control points with perpendicular offset + wobble
-    const cp1x=this.cx+dx*0.3*progress+nx*w1;
-    const cp1y=this.cy+dy*0.3*progress+ny*w1;
-    const cp2x=this.cx+dx*0.65*progress-nx*w2*0.6;
-    const cp2y=this.cy+dy*0.65*progress-ny*w2*0.6;
-
-    return {d:`M${this.cx},${this.cy} C${cp1x},${cp1y} ${cp2x},${cp2y} ${ex},${ey}`,ex,ey};
-  }
-
-  // Ease-out with slight overshoot bounce
-  _easeOutBounce(t){
-    if(t<0.75) return 1-Math.pow(1-t/0.75,3);
-    const b=(t-0.75)/0.25;
-    return 1+Math.sin(b*Math.PI)*0.08;
-  }
-
-  // Reach: grow tentacle from center to target
-  reach(idx){
-    return new Promise(resolve=>{
-      const dur=550;
-      const start=performance.now();
-      const arm=this.arms[idx];
-      arm.tip.style.opacity='1';
-
-      const tick=(now)=>{
-        const raw=Math.min((now-start)/dur,1);
-        const p=Math.min(this._easeOutBounce(raw),1);
-        const {d,ex,ey}=this._buildPath(idx,p,now);
-        arm.main.setAttribute('d',d);
-        arm.glow.setAttribute('d',d);
-        arm.tip.setAttribute('cx',ex);
-        arm.tip.setAttribute('cy',ey);
-        if(raw<1)requestAnimationFrame(tick);
-        else resolve();
-      };
-      requestAnimationFrame(tick);
-    });
-  }
-
-  // Retract: shrink tentacle back to center
-  retract(idx){
-    return new Promise(resolve=>{
-      const dur=380;
-      const start=performance.now();
-      const arm=this.arms[idx];
-
-      const tick=(now)=>{
-        const raw=Math.min((now-start)/dur,1);
-        const p=1-raw*raw; // ease-in retract
-        const {d,ex,ey}=this._buildPath(idx,p,now);
-        arm.main.setAttribute('d',d);
-        arm.glow.setAttribute('d',d);
-        arm.tip.setAttribute('cx',ex);
-        arm.tip.setAttribute('cy',ey);
-        arm.tip.style.opacity=String(p);
-        if(raw<1)requestAnimationFrame(tick);
-        else{
-          arm.main.setAttribute('d','');
-          arm.glow.setAttribute('d','');
-          arm.tip.style.opacity='0';
-          resolve();
-        }
-      };
-      requestAnimationFrame(tick);
-    });
-  }
-
-  // Full grab: reach → impact callback → retract
-  async grab(idx,onImpact){
-    await this.reach(idx);
-    if(onImpact)onImpact(idx);
-    await new Promise(r=>setTimeout(r,220));
-    await this.retract(idx);
-  }
-
-  // Reset all arms (for looping)
-  reset(){
-    this.arms.forEach(a=>{
-      a.main.setAttribute('d','');
-      a.glow.setAttribute('d','');
-      a.tip.style.opacity='0';
-    });
-  }
-
-  destroy(){
-    if(this.svg&&this.svg.parentNode)this.svg.remove();
-  }
-}
-
 /* ── App ────────────────────────────────────────────────────── */
 let loadT=null;
-let tentAnimator=null;
 let loadAborted=false;
 
 function go(id){
@@ -741,16 +621,52 @@ function go(id){
   const btn=document.querySelector('.dnav button[data-s="'+id+'"]');
   if(btn)btn.classList.add('on');
   if(id==='s-loading')runLoad();
+  if(id==='s-splash')runSplash();
 }
 document.querySelectorAll('.dnav button').forEach(b=>{
   b.addEventListener('click',()=>go(b.dataset.s));
 });
 
+/* ── Splash ─────────────────────────────────────────────────── */
+let splashT=[];
+function runSplash(){
+  // Clear any pending timers
+  splashT.forEach(t=>clearTimeout(t));splashT=[];
+  const glow=document.getElementById('splash-glow');
+  const mascot=document.getElementById('splash-mascot');
+  const splash=document.getElementById('s-splash');
+  // Reset
+  glow.classList.remove('show');
+  mascot.classList.remove('show','bob');
+  mascot.style.opacity='0';mascot.style.transform='scale(0.3)';
+  splash.classList.remove('fading');
+  // Step 1: Background glow
+  splashT.push(setTimeout(()=>glow.classList.add('show'),100));
+  // Step 2: Mascot bounces in
+  splashT.push(setTimeout(()=>{mascot.classList.add('show');},700));
+  // Step 3: Settle into bob
+  splashT.push(setTimeout(()=>{mascot.classList.remove('show');mascot.style.opacity='1';mascot.style.transform='scale(1)';mascot.classList.add('bob');},1500));
+  // Step 4: Fade out and go to welcome
+  splashT.push(setTimeout(()=>{splash.classList.add('fading');},2800));
+  splashT.push(setTimeout(()=>go('s-welcome'),3400));
+}
+
+/* ── Info card ──────────────────────────────────────────────── */
+function toggleInfo(){
+  document.getElementById('info-overlay').classList.toggle('open');
+}
+function closeInfoOutside(e){
+  if(e.target===document.getElementById('info-overlay'))toggleInfo();
+}
+
+// Auto-run splash on load
+runSplash();
+
 function runLoad(){
   loadAborted=false;
   const steps=['ls1','ls2','ls3','ls4'];
   const titles=[
-    ['Opretter profil...','Okto rækker ud efter relevante kilder til dig'],
+    ['Opretter profil...','Okto forbereder din personlige profil'],
     ['Scanner kilder...','Gennemsøger DR, Børsen, Reuters, ECB og mange flere'],
     ['Matcher nyheder...','Finder nyheder der er relevante for din økonomi'],
     ['Næsten klar!','Genererer personlige AI-indsigter til dig']
@@ -758,71 +674,74 @@ function runLoad(){
   const fill=document.getElementById('load-fill');
   const tEl=document.getElementById('load-title');
   const sEl=document.getElementById('load-sub');
-  const countEl=document.getElementById('grabbed-count');
-  const octo=document.getElementById('load-scene').querySelector('.load-octo');
+  const mascot=document.getElementById('load-mascot');
 
   // Reset state
   steps.forEach(s=>document.getElementById(s).classList.remove('done'));
   fill.style.width='0%';
-  for(let j=0;j<8;j++) document.getElementById('sb-'+j).classList.remove('visible','grabbed');
-  countEl.textContent='0';
+  mascot.classList.remove('show','reading','excited');
+  for(let j=0;j<6;j++) document.getElementById('fp-'+j).classList.remove('show','grabbed');
 
-  // Init tentacle animator
-  if(tentAnimator)tentAnimator.destroy();
-  tentAnimator=new TentacleAnimator(document.getElementById('load-scene'));
+  // Fade in mascot
+  setTimeout(()=>{
+    if(loadAborted)return;
+    mascot.classList.add('show');
+  },200);
 
-  let grabbed=0;
+  // Start reading animation
+  setTimeout(()=>{
+    if(loadAborted)return;
+    mascot.classList.add('reading');
+  },800);
 
-  // Bubbles appear
-  for(let j=0;j<8;j++){
-    setTimeout(()=>{
-      if(!loadAborted) document.getElementById('sb-'+j).classList.add('visible');
-    },300+j*150);
-  }
-
-  // Step 1
+  // Step 1 + first screens appear
   setTimeout(()=>{
     if(loadAborted)return;
     document.getElementById('ls1').classList.add('done');
-    tEl.textContent=titles[0][0];sEl.textContent=titles[0][1];fill.style.width='10%';
-  },500);
+    tEl.textContent=titles[0][0];sEl.textContent=titles[0][1];fill.style.width='15%';
+    document.getElementById('fp-0').classList.add('show');
+    document.getElementById('fp-1').classList.add('show');
+  },800);
 
-  // Step 2 + grab sequence
+  // Step 2 + more screens appear and get grabbed
   setTimeout(()=>{
     if(loadAborted)return;
     tEl.textContent=titles[1][0];sEl.textContent=titles[1][1];
-    document.getElementById('ls2').classList.add('done');fill.style.width='25%';
+    document.getElementById('ls2').classList.add('done');fill.style.width='40%';
+    document.getElementById('fp-2').classList.add('show');
+    document.getElementById('fp-3').classList.add('show');
+    // Grab first screens
+    document.getElementById('fp-0').classList.add('grabbed');
+    document.getElementById('fp-1').classList.add('grabbed');
+  },2500);
 
-    const order=[0,2,5,1,6,3,7,4];
-    order.forEach((idx,seq)=>{
-      setTimeout(async()=>{
-        if(loadAborted)return;
-        octo.classList.add('grabbing');
-        await tentAnimator.grab(idx,()=>{
-          if(loadAborted)return;
-          document.getElementById('sb-'+idx).classList.add('grabbed');
-          grabbed++;countEl.textContent=grabbed;
-          fill.style.width=(25+grabbed*6)+'%';
-          spawnParticles(idx);
-        });
-        octo.classList.remove('grabbing');
-      },seq*420);
-    });
-  },1800);
+  // More screens appear + grab
+  setTimeout(()=>{
+    if(loadAborted)return;
+    document.getElementById('fp-4').classList.add('show');
+    document.getElementById('fp-5').classList.add('show');
+    document.getElementById('fp-2').classList.add('grabbed');
+    document.getElementById('fp-3').classList.add('grabbed');
+    fill.style.width='55%';
+  },3800);
 
-  // Step 3
+  // Step 3 + remaining grabs
   setTimeout(()=>{
     if(loadAborted)return;
     tEl.textContent=titles[2][0];sEl.textContent=titles[2][1];
-    document.getElementById('ls3').classList.add('done');fill.style.width='80%';
-  },5800);
+    document.getElementById('ls3').classList.add('done');fill.style.width='75%';
+    document.getElementById('fp-4').classList.add('grabbed');
+    document.getElementById('fp-5').classList.add('grabbed');
+  },5000);
 
-  // Step 4
+  // Step 4 — excited!
   setTimeout(()=>{
     if(loadAborted)return;
     tEl.textContent=titles[3][0];sEl.textContent=titles[3][1];
     document.getElementById('ls4').classList.add('done');fill.style.width='95%';
-  },7200);
+    mascot.classList.remove('reading');
+    mascot.classList.add('excited');
+  },7000);
 
   // Done
   loadT=setTimeout(()=>{
@@ -831,24 +750,7 @@ function runLoad(){
     tEl.textContent='Dit feed er klar!';
     sEl.textContent='Vi fandt 12 relevante nyheder til dig i dag';
     loadT=setTimeout(()=>go('s-feed'),1200);
-  },8400);
-}
-
-function spawnParticles(idx){
-  const scene=document.getElementById('load-scene');
-  const sb=document.getElementById('sb-'+idx);
-  const rect=sb.getBoundingClientRect();
-  const sr=scene.getBoundingClientRect();
-  const sx=rect.left+rect.width/2-sr.left,sy=rect.top+rect.height/2-sr.top;
-  for(let p=0;p<6;p++){
-    const d=document.createElement('div');d.className='particle';
-    d.style.left=sx+'px';d.style.top=sy+'px';
-    d.style.setProperty('--dx',(150-sx+(Math.random()*30-15))+'px');
-    d.style.setProperty('--dy',(150-sy+(Math.random()*30-15))+'px');
-    d.style.animation='flyToCenter 0.7s '+p*0.06+'s ease-in forwards';
-    d.style.width=(3+Math.random()*4)+'px';d.style.height=d.style.width;
-    scene.appendChild(d);setTimeout(()=>d.remove(),900);
-  }
+  },8500);
 }
 
 function togC(el){
