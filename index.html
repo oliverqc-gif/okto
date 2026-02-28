@@ -421,7 +421,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <img src="okto-mascot.png" class="mascot-lg" alt="Okto">
     <div class="welcome-logo">Okto</div>
     <div class="welcome-tagline" style="max-width:340px;white-space:nowrap;">Fang de vigtige nyheder.</div>
-    <button class="btn-p" onclick="go('s-signup')">Opret konto</button>
+    <button class="btn-p" onclick="go('s-intro')">Opret konto</button>
     <button class="btn-s" onclick="go('s-signup')">Log ind</button>
     <div class="info-pill" onclick="toggleInfo()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><circle cx="12" cy="8" r="0.5" fill="currentColor"/></svg>Hvad er Okto?</div>
     <!-- Info overlay -->
@@ -446,161 +446,35 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div class="fg"><label class="fl">E-mail</label><input class="fi" type="email" value="thomas@eksempel.dk"></div>
     <div class="fg"><label class="fl">Adgangskode</label><div class="pw-wrap"><input class="fi" type="password" value="password123" id="pw1"><button type="button" class="pw-tog hidden" onclick="togPw(this,'pw1')"><svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2.5"/><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg><svg class="eye-shut" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><path d="M3 3l18 18" stroke-width="2.5"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg></button></div></div>
     <div class="fg"><label class="fl">Bekræft adgangskode</label><div class="pw-wrap"><input class="fi" type="password" value="password123" id="pw2"><button type="button" class="pw-tog hidden" onclick="togPw(this,'pw2')"><svg class="eye-open" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="2.5"/><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg><svg class="eye-shut" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2" stroke-linecap="round"><path d="M12 5C7 5 3 9.5 2 12c1 2.5 5 7 10 7s9-4.5 10-7c-1-2.5-5-7-10-7z"/><path d="M3 3l18 18" stroke-width="2.5"/><circle cx="9.5" cy="10" r="0.8" fill="var(--amber)" stroke="none"/></svg></button></div></div>
-    <button class="btn-p" onclick="go('s-intro')" style="margin-top:8px">Opret konto</button>
+    <button class="btn-p" onclick="go('s-p1')" style="margin-top:8px">Opret konto</button>
     <div class="terms">Ved at oprette en konto accepterer du vores <a href="#">vilkar</a> og <a href="#">privatlivspolitik</a></div>
   </div>
 
-  <!-- PROFILE INTRO -->
+  <!-- INTRO -->
   <div class="scr scr-welcome" id="s-intro" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px 36px 40px;background:radial-gradient(ellipse at 50% 30%,rgba(240,160,48,0.06),var(--bg) 70%);">
     <img src="okto-mascot.png" class="mascot-md" alt="Okto" style="margin-bottom:24px;">
-    <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.3;">Lad os lære dig at kende</div>
-    <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.7;max-width:310px;margin-bottom:40px;">Du vil nu gennemgå nogle få trin, hvorigennem din profil defineres. Det er ud fra disse informationer at nyheder tilpasses og rettes mod dig. Det er derfor vigtigt for din oplevelse af Okto at disse trin gennemføres ordentligt.</div>
-    <button class="btn-p" onclick="go('s-p1')">Lad os komme i gang</button>
+    <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.3;">Finansnyheder der er relevante for dig</div>
+    <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.7;max-width:310px;margin-bottom:32px;">Okto filtrerer støjen fra og giver dig kun de nyheder, der faktisk betyder noget for dig — tilpasset dine interesser og din aktieportefølje.</div>
+    <button class="btn-p" onclick="go('s-signup')" style="width:100%;max-width:310px;">Opret konto</button>
   </div>
 
   <!-- PROFILE 1 -->
   <div class="scr scr-profile" id="s-p1">
     <div class="hdr"><button class="back" onclick="go('s-intro')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
+    <div class="prog"><div class="prog-s now"></div><div class="prog-s"></div></div>
     <div class="ttl">Grundlæggende oplysninger</div><div class="sub" style="margin-bottom:26px">Fortæl os lidt om dig selv.</div>
     <div class="fg"><label class="fl">Alder</label><div class="rv"><span class="rv-n" id="age-v">32</span><span class="rv-u">år</span></div><input class="rng" type="range" min="18" max="80" value="32" oninput="document.getElementById('age-v').textContent=this.value"><div class="rng-l"><span>18</span><span>80</span></div></div>
     <div class="fg" style="margin-top:22px"><label class="fl">Region</label><div class="sel-w"><select class="fsel"><option>Hovedstaden</option><option>Midtjylland</option><option>Nordjylland</option><option>Sjælland</option><option>Syddanmark</option></select></div></div>
-    <div class="fg" style="margin-top:18px"><label class="fl">Beskæftigelse</label><div class="og"><div class="oc sel" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v3"/><path d="M3 12h18"/></svg></span><span class="ol">Lønmodtager</span></div><div class="oc" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M3 9h6"/><path d="M3 15h6"/><path d="M13 7h4"/><path d="M13 11h4"/><path d="M13 15h4"/></svg></span><span class="ol">Selvstændig</span></div><div class="oc" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c0 1.5 3 3 6 3s6-1.5 6-3v-5"/><path d="M22 10v6"/></svg></span><span class="ol">Studerende</span></div><div class="oc" onclick="togC(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2"/><path d="M12 21v2"/><path d="M4.22 4.22l1.42 1.42"/><path d="M18.36 18.36l1.42 1.42"/><path d="M1 12h2"/><path d="M21 12h2"/><path d="M4.22 19.78l1.42-1.42"/><path d="M18.36 5.64l1.42-1.42"/></svg></span><span class="ol">Pensioneret</span></div></div></div>
-    <div class="fg" style="margin-top:18px"><label class="fl">Uddannelsesniveau</label><div class="sel-w"><select class="fsel"><option>Grundskole</option><option>Gymnasium / HF</option><option>Erhvervsuddannelse</option><option>Kort videregående</option><option>Mellemlang videregående</option><option>Lang videregående</option><option>Ph.d. / Forsker</option></select></div></div>
-    <div class="fg" style="margin-top:20px"><label class="fl">Årlig indkomst før skat</label><div class="rv"><span class="rv-n" id="inc-v">480</span><span class="rv-u">000 kr.</span></div><input class="rng" type="range" min="0" max="2000" step="1" value="480" oninput="document.getElementById('inc-v').textContent=this.value"><div class="rng-l"><span>0</span><span>2.000.000+</span></div></div>
-    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p2')">Næste</button></div>
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p1b')">Næste</button></div>
   </div>
 
-  <!-- PROFILE 2: BOLIG -->
-  <div class="scr scr-profile" id="s-p2">
+  <!-- PROFILE STEP 2: INTERESSER -->
+  <div class="scr scr-profile" id="s-p1b">
     <div class="hdr"><button class="back" onclick="go('s-p1')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
-    <div class="ttl">Bolig</div><div class="sub" style="margin-bottom:26px">Vælg alle boligtyper der gælder for dig.</div>
-
-    <div class="sl" style="margin-top:0">Egen bolig</div>
-    <div class="olist">
-      <div class="oli" onclick="togL(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="15" rx="1"/><path d="M4 10h16"/><rect x="8" y="13" width="3" height="4"/><rect x="13" y="13" width="3" height="4"/></svg></span><div class="oc-c"><div class="ol">Lejebolig</div><div class="od">Lejer lejlighed eller hus</div></div><div class="chk"></div></div>
-      <div class="oli sel" onclick="togL(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/></svg></span><div class="oc-c"><div class="ol">Andelsbolig</div><div class="od">Andelslejlighed eller -hus</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togL(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/><path d="M17 7V4h-3"/></svg></span><div class="oc-c"><div class="ol">Ejerbolig</div><div class="od">Ejerlejlighed eller villa</div></div><div class="chk"></div></div>
-    </div>
-
-    <div class="sl">Fritidsboliger</div>
-    <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M12 3L3 14h18L12 3z"/><rect x="9" y="14" width="6" height="7"/><path d="M5 21h14"/></svg></span><div class="oc-c"><div class="ol">Sommerhus</div><div class="od">Ejer sommerhus</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/><path d="M2 21h20"/><circle cx="18" cy="6" r="2" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Kolonihave</div><div class="od">Ejer kolonihavehus</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3.5 9h17M3.5 15h17"/><ellipse cx="12" cy="12" rx="4" ry="9"/></svg></span><div class="oc-c"><div class="ol">Feriebolig i udlandet</div><div class="od">Ejer bolig i udlandet</div></div><div class="chk"></div></div>
-    </div>
-
-    <div class="sl">Erhvervsboliger</div>
-    <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="1"/><path d="M7 8V5h10v3"/><rect x="7" y="12" width="4" height="3"/><rect x="13" y="12" width="4" height="3"/><path d="M3 21h18"/></svg></span><div class="oc-c"><div class="ol">Udlejningsejendom</div><div class="od">Ejer bolig der udlejes</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="2" y="4" width="9" height="17" rx="1"/><rect x="13" y="9" width="9" height="12" rx="1"/><rect x="5" y="7" width="3" height="3"/><rect x="5" y="13" width="3" height="3"/><rect x="16" y="12" width="3" height="3"/></svg></span><div class="oc-c"><div class="ol">Erhvervsejendom</div><div class="od">Kontor, butik eller lager</div></div><div class="chk"></div></div>
-    </div>
-
-    <!-- Dynamic per-property value sliders -->
-    <div id="housing-values">
-      <div class="sl">Anslået værdi pr. bolig</div>
-      <div class="hv-item" data-label="Andelsbolig">
-        <div style="font-size:13px;font-weight:600;color:var(--text);margin-bottom:8px;">Andelsbolig</div>
-        <div class="rv"><span class="rv-n" id="hv-andel">2.2</span><span class="rv-u">mio. kr.</span></div>
-        <input class="rng" type="range" min="1" max="100" value="22" oninput="document.getElementById('hv-andel').textContent=(this.value/10).toFixed(1)">
-        <div class="rng-l"><span>100.000</span><span>10.000.000+</span></div>
-      </div>
-    </div>
-
-    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p3')">Næste</button></div>
-  </div>
-
-  <!-- PROFILE 3: KØRETØJER -->
-  <div class="scr scr-profile" id="s-p3">
-    <div class="hdr"><button class="back" onclick="go('s-p2')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div><div class="prog-s"></div></div>
-    <div class="ttl">Køretøjer</div><div class="sub" style="margin-bottom:26px">Vælg de køretøjer de ejer, leaser eller bruger.</div>
-
-    <div class="sl" style="margin-top:0">Biler</div>
-    <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/></svg></span><div class="oc-c"><div class="ol">Bil</div><div class="od">Benzin- eller dieselbil</div></div><div class="chk"></div></div>
-      <div class="oli sel" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/><path d="M13 4h-2l-1 3h4l-1-3z" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Elbil</div><div class="od">Elektrisk bil</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/><circle cx="12" cy="4.5" r="1.5" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Hybrid</div><div class="od">Hybridbil</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17h-1a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h1l1.5-4.5A1 1 0 0 1 7.5 7h9a1 1 0 0 1 .95.68L19 12h1a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1"/><path d="M5 17h4m2 0h4"/><path d="M15 4h4M17 2v4" stroke-width="2"/></svg></span><div class="oc-c"><div class="ol">Leasingbil</div><div class="od">Privat- eller erhvervsleasing</div></div><div class="chk"></div></div>
-    </div>
-
-    <div class="sl">Tohjulede & andet</div>
-    <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M8 18h8"/><path d="M12 18V9"/><path d="M12 9l5 3"/><path d="M12 9l-4 5"/><path d="M9 5h6" stroke-width="2"/><path d="M12 5v4"/></svg></span><div class="oc-c"><div class="ol">El-cykel / speed pedelec</div><div class="od">Ejer elektrisk cykel</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M5 18l5-8h4"/><path d="M14 10l5 8"/><path d="M10 10l-1 4h6"/><path d="M14 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"/></svg></span><div class="oc-c"><div class="ol">Motorcykel / scooter</div><div class="od">Ejer motorcykel eller scooter</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="6" cy="18" r="2.5"/><circle cx="18" cy="18" r="2.5"/><rect x="3" y="10" width="18" height="6" rx="2"/><path d="M3 13h18"/><path d="M5 10V8a1 1 0 0 1 1-1h5v3"/><rect x="15" y="11" width="3" height="2" rx="0.5" fill="var(--amber)" stroke="none"/></svg></span><div class="oc-c"><div class="ol">Autocamper / campingvogn</div><div class="od">Ejer autocamper eller campingvogn</div></div><div class="chk"></div></div>
-    </div>
-
-    <div class="sl">Andet</div>
-    <div class="olist">
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="10" rx="3"/><circle cx="7" cy="18" r="2"/><circle cx="17" cy="18" r="2"/><path d="M3 11h18"/><path d="M7 8h3"/><path d="M9 16v-5"/></svg></span><div class="oc-c"><div class="ol">Offentlig transport</div><div class="od">Bus, tog eller metro</div></div><div class="chk"></div></div>
-      <div class="oli" onclick="togM(this)"><span class="oi"><svg viewBox="0 0 24 24"><circle cx="5" cy="18" r="3"/><circle cx="19" cy="18" r="3"/><path d="M8 18h8"/><path d="M12 18V9"/><path d="M12 9l5 3"/><path d="M12 9l-4 5"/><path d="M10 6l2 3 2-3"/></svg></span><div class="oc-c"><div class="ol">Cykel</div><div class="od">Almindelig eller el-cykel</div></div><div class="chk"></div></div>
-    </div>
-
-    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p4')">Næste</button></div>
-  </div>
-
-  <!-- PROFILE 4: LÅN -->
-  <div class="scr scr-profile" id="s-p4">
-    <div class="hdr"><button class="back" onclick="go('s-p3')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div><div class="prog-s"></div></div>
-    <div class="ttl">Lån</div><div class="sub" style="margin-bottom:26px">Angiv lån tilknyttet dine boliger og køretøjer.</div>
-
-    <!-- Contextual loan section for Andelsbolig (from housing) -->
-    <div class="sl" style="margin-top:0">Andelsbolig</div>
-    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:16px;">
-      <div class="fg"><label class="fl">Låntyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Andelslån</div><div class="chip" onclick="this.classList.toggle('sel')">Boliglån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div></div></div>
-      <div class="fg" style="margin-top:14px"><label class="fl">Restgæld</label><div class="rv"><span class="rv-n" id="debt-andel">1.4</span><span class="rv-u">mio. kr.</span></div><input class="rng" type="range" min="0" max="60" value="14" oninput="document.getElementById('debt-andel').textContent=(this.value/10).toFixed(1)"><div class="rng-l"><span>0</span><span>6.000.000+</span></div></div>
-      <div class="fg" style="margin-top:14px"><label class="fl">Friværdi (anslået)</label><div class="rv"><span class="rv-n" id="eq-andel">0.8</span><span class="rv-u">mio. kr.</span></div><div style="font-size:12px;color:var(--text3);margin-top:8px;">Beregnes automatisk</div></div>
-      <div class="fg" style="margin-top:14px"><label class="fl">Rentetype</label><div class="og"><div class="oc sel" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Fast rente</span></div><div class="oc" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Variabel</span></div></div></div>
-    </div>
-
-    <!-- Contextual loan section for Elbil (from vehicles) -->
-    <div class="sl">Elbil</div>
-    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:16px;">
-      <div class="fg"><label class="fl">Låntyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Billån</div><div class="chip" onclick="this.classList.toggle('sel')">Forbrugslån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div></div></div>
-      <div class="fg" style="margin-top:14px"><label class="fl">Restgæld</label><div class="rv"><span class="rv-n" id="debt-elbil">0.3</span><span class="rv-u">mio. kr.</span></div><input class="rng" type="range" min="0" max="20" value="3" oninput="document.getElementById('debt-elbil').textContent=(this.value/10).toFixed(1)"><div class="rng-l"><span>0</span><span>2.000.000+</span></div></div>
-      <div class="fg" style="margin-top:14px"><label class="fl">Rentetype</label><div class="og"><div class="oc" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Fast rente</span></div><div class="oc sel" onclick="togC(this)" style="padding:10px 6px"><span class="ol" style="font-size:12px">Variabel</span></div></div></div>
-    </div>
-
-    <!-- Other loans -->
-    <div class="sl">Øvrige lån</div>
-    <div class="fg"><div class="chips"><div class="chip" onclick="this.classList.toggle('sel')">SU-lån</div><div class="chip" onclick="this.classList.toggle('sel')">Forbrugslån</div><div class="chip" onclick="this.classList.toggle('sel')">Kassekredit</div><div class="chip" onclick="this.classList.toggle('sel')">Studielån</div></div></div>
-
-    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p5')">Næste</button></div>
-  </div>
-
-  <!-- PROFILE 5: OPSPARING & MERE -->
-  <div class="scr scr-profile" id="s-p5">
-    <div class="hdr"><button class="back" onclick="go('s-p4')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div><div class="prog-s"></div></div>
-    <div class="ttl">Opsparing & mere</div><div class="sub" style="margin-bottom:26px">Fortæl os om dine opsparinger og forsikringer.</div>
-    <div class="fg"><label class="fl">Opsparingstyper</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Aktiesparekonto</div><div class="chip" onclick="this.classList.toggle('sel')">Pension</div><div class="chip sel" onclick="this.classList.toggle('sel')">Friværdi</div><div class="chip" onclick="this.classList.toggle('sel')">Krypto</div><div class="chip" onclick="this.classList.toggle('sel')">Ratepension</div><div class="chip" onclick="this.classList.toggle('sel')">Aldersopsparing</div></div></div>
-    <div class="sl">Forsikringer</div>
-    <div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Indboforsikring</div><div class="chip sel" onclick="this.classList.toggle('sel')">Bilforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Ulykkesforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Sundhedsforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Livsforsikring</div><div class="chip" onclick="this.classList.toggle('sel')">Rejseforsikring</div></div>
-    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p6')">Næste</button></div>
-  </div>
-
-  <!-- PROFILE 6: BEKRÆFTELSE -->
-  <div class="scr scr-profile" id="s-p6">
-    <div class="hdr"><button class="back" onclick="go('s-p5')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
-    <div class="prog"><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s done"></div><div class="prog-s now"></div></div>
-    <div class="ttl">Opsummering</div><div class="sub" style="margin-bottom:26px">Bekræft dine oplysninger og opret din profil.</div>
-
-    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:14px;">
-      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Grundlæggende</div>
-      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Alder</span><span style="font-size:13px;color:var(--amber);font-weight:600;">32 år</span></div>
-      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Region</span><span style="font-size:13px;color:var(--amber);font-weight:600;">Hovedstaden</span></div>
-      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Indkomst</span><span style="font-size:13px;color:var(--amber);font-weight:600;">450.000 kr.</span></div>
-    </div>
-    <div style="background:var(--surface);border-radius:var(--rm);padding:16px;border:1px solid var(--border);margin-bottom:14px;">
-      <div style="font-size:11px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px;">Bolig & køretøjer</div>
-      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Andelsbolig</span><span style="font-size:13px;color:var(--amber);font-weight:600;">2,2 mio. kr.</span></div>
-      <div class="trow" style="border:none;padding:6px 0;"><span class="trow-l" style="font-size:13px;">Elbil</span><span style="font-size:13px;color:var(--amber);font-weight:600;">Ejet</span></div>
-    </div>
-
-    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-loading')">Færdig - opret min profil</button></div>
+    <div class="prog"><div class="prog-s done"></div><div class="prog-s now"></div></div>
+    <div class="ttl">Dine interesser</div><div class="sub" style="margin-bottom:26px">Vælg de emner du gerne vil følge.</div>
+    <div class="fg"><label class="fl">Nyhedsemner</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Aktier</div><div class="chip" onclick="this.classList.toggle('sel')">Bolig</div><div class="chip sel" onclick="this.classList.toggle('sel')">Skat</div><div class="chip" onclick="this.classList.toggle('sel')">Pension</div><div class="chip" onclick="this.classList.toggle('sel')">Forsikring</div><div class="chip sel" onclick="this.classList.toggle('sel')">Energi</div><div class="chip" onclick="this.classList.toggle('sel')">EU & Økonomi</div><div class="chip" onclick="this.classList.toggle('sel')">Lån & Renter</div><div class="chip" onclick="this.classList.toggle('sel')">Krypto</div><div class="chip" onclick="this.classList.toggle('sel')">Transport</div><div class="chip" onclick="this.classList.toggle('sel')">Opsparing</div><div class="chip" onclick="this.classList.toggle('sel')">Investering</div></div></div>
+    <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-loading')">Færdig</button></div>
   </div>
 
   <!-- LOADING -->
@@ -628,7 +502,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div class="load-steps">
       <div class="load-step" id="ls1"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Opretter finansiel profil</span></div>
       <div class="load-step" id="ls2"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Scanner nyhedskilder</span></div>
-      <div class="load-step" id="ls3"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Matcher nyheder til din profil</span></div>
+      <div class="load-step" id="ls3"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Matcher nyheder til dine interesser</span></div>
       <div class="load-step" id="ls4"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Genererer personlige indsigter</span></div>
     </div>
     <div class="load-bar" style="margin-top:20px"><div class="load-bar-fill" id="load-fill"></div></div>
@@ -639,135 +513,104 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div class="notif" style="margin-top:60px">
       <div class="notif-h"><div class="notif-icon"><img src="okto-mascot.png" alt="Okto"></div><span class="notif-app">Okto</span><span class="notif-ago">nu</span></div>
       <div class="notif-t">ECB sænker renten med 0,25%</div>
-      <div class="notif-b">Med dit andelslån med variabel rente kan det betyde ca. 340 kr./md. lavere ydelse.</div>
+      <div class="notif-b">Denne nyhed kan påvirke dine interesseområder. Tryk for at læse mere.</div>
     </div>
     <div class="fh">
       <div class="fh-l"><img src="okto-mascot.png" class="mascot-sm" alt="Okto"><div class="fh-g">Hej, Thomas</div></div>
       <div class="fh-r"><button class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button><button class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div class="ndot"></div></button></div>
     </div>
     <div class="fh-d">Torsdag, 19. februar 2026</div>
-    <div class="pills"><div class="pill on">Til dig</div><div class="pill">Bolig</div><div class="pill">Lån & renter</div><div class="pill">Skat</div><div class="pill">Opsparing</div><div class="pill">Transport</div></div>
+    <div class="pills"><div class="pill on">Til dig</div><div class="pill">Aktier</div><div class="pill">Skat</div><div class="pill">Pension</div><div class="pill">Energi</div><div class="pill">EU & Økonomi</div></div>
+
+    <!-- Ugentlig portefølje-opsummering -->
+    <div style="margin:0 20px 14px;padding:18px;background:linear-gradient(135deg,#1E2A1E,#2A3828,#1E2A1E);border:1px solid rgba(80,184,104,0.2);border-radius:var(--rl);box-shadow:0 0 24px rgba(80,184,104,0.06);">
+      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
+        <img src="okto-mascot.png" style="width:18px;height:18px;" alt="">
+        <span style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;">Ugentlig opsummering</span>
+      </div>
+      <div style="font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:8px;">Din uge i overblik: 19.–25. feb.</div>
+      <div style="font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:10px;">Novo Nordisk offentliggør kvartalsregnskab onsdag. Apple-event forventes torsdag med nye produktlanceringer. Vestas-aktien kan påvirkes af nye EU-klimamål der diskuteres fredag.</div>
+      <div style="display:flex;gap:6px;">
+        <span class="tag tag-s">3 begivenheder</span>
+        <span class="tag tag-h">Denne uge</span>
+      </div>
+    </div>
+
     <div class="ns">
       <div class="ns-t">I DAG</div>
       <div class="nc feat fu d1">
         <div class="brk"><div class="pls"></div>VIGTIG NYHED</div>
         <div class="nc-h"><div class="nc-src"><div class="sdot sdot-ecb"></div><span class="sname">ECB / Reuters</span></div><span class="nc-t">12:45</span></div>
         <div class="nc-title">ECB sænker styringsrenten med 0,25 procentpoint til 2,5%</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Med dit andelslån på ca. 1,8 mio. kr. med variabel rente kan denne sænkning spare dig omkring 340 kr. om måneden.</div></div>
-        <div class="tags"><span class="tag tag-t">Andelsbolig</span><span class="tag tag-t">Variabel rente</span></div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">En rentesænkning kan påvirke lån, boligpriser og opsparinger. Følg med for at se, hvad det betyder for dig.</div></div>
+        <div class="tags"><span class="tag tag-t">Renter</span><span class="tag tag-t">Økonomi</span></div>
       </div>
       <div class="nc fu d2">
         <div class="nc-h"><div class="nc-src"><div class="sdot sdot-dr"></div><span class="sname">DR Nyheder</span></div><span class="nc-t">11:20</span></div>
         <div class="nc-title">Regeringen foreslår nye fradragsregler for elbiler fra 2027</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Som elbil-ejer påvirker dette dig direkte. Det nye forslag kan give dig op til 8.000 kr. ekstra i fradrag årligt.</div></div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Nye fradragsregler kan give fordele for elbil-ejere. Læs mere om, hvad det kan betyde.</div></div>
         <div class="tags"><span class="tag tag-t">Skat & fradrag</span><span class="tag" style="background:rgba(160,100,220,0.1);color:#A064DC;">Elbil</span></div>
       </div>
       <div class="nc fu d3">
         <div class="nc-h"><div class="nc-src"><div class="sdot sdot-bor"></div><span class="sname">Børsen</span></div><span class="nc-t">09:15</span></div>
         <div class="nc-title">Andelsboligmarkedet i København stiger 4,2% i Q4 2025</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Din andelsbolig i Hovedstaden stiger formentlig i værdi. Med en anslået værdi på 2,2 mio. kr. kan det betyde en stigning på ca. 90.000 kr.</div></div>
-        <div class="tags"><span class="tag tag-h">Andelsbolig</span><span class="tag tag-s">Friværdi</span></div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Andelsboligmarkedet i København viser positiv vækst. Relevant hvis du følger boligmarkedet.</div></div>
+        <div class="tags"><span class="tag tag-h">Boligmarked</span><span class="tag tag-s">København</span></div>
       </div>
       <div class="nc fu d4">
         <div class="nc-h"><div class="nc-src"><div class="sdot sdot-fin"></div><span class="sname">Finans.dk</span></div><span class="nc-t">08:30</span></div>
         <div class="nc-title">Nye regler for aktiesparekonto: Loftet hæves til 150.000 kr.</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Du har en aktiesparekonto - det nye loft giver dig mulighed for at indsætte mere med den lave beskatning på 17%.</div></div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Har du en aktiesparekonto? Det nye loft giver mulighed for at indsætte mere med den lave beskatning på 17%.</div></div>
         <div class="tags"><span class="tag tag-s">Aktiesparekonto</span><span class="tag tag-t">Skat</span></div>
       </div>
       <div style="height:10px"></div>
     </div>
     <div class="tabs">
       <button class="tab on" onclick="goTab('s-feed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Feed</span></button>
-      <button class="tab" onclick="goTab('s-explore')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Udforsk</span></button>
-      <button class="tab" onclick="goTab('s-insights')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Indsigter</span></button>
+      <button class="tab" onclick="goTab('s-portfolio')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Portefølje</span></button>
       <button class="tab" onclick="goTab('s-profil')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profil</span></button>
     </div>
   </div>
 
-  <!-- EXPLORE -->
-  <div class="scr scr-explore" id="s-explore">
-    <div class="expl-hdr"><div class="expl-title">Udforsk</div></div>
-    <div class="search-box">
-      <div class="search-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></div>
-      <input class="search-input" type="text" placeholder="Søg efter emner, kilder...">
+  <!-- PORTFOLIO -->
+  <div class="scr" id="s-portfolio" style="padding:54px 0 0;display:flex;flex-direction:column;min-height:100%;">
+    <div style="padding:16px 24px 0;">
+      <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--text);">Din portefølje</div>
     </div>
-    <div class="expl-content">
-      <div class="expl-section"><div class="expl-label">TRENDING NU</div></div>
-      <div class="trending-scroll">
-        <div class="trend-card hot"><div class="trend-num">#1</div><div class="trend-title">ECB rentebeslutning</div><div class="trend-meta">47 artikler i dag</div></div>
-        <div class="trend-card"><div class="trend-num">#2</div><div class="trend-title">Boligmarked Q4</div><div class="trend-meta">23 artikler i dag</div></div>
-        <div class="trend-card"><div class="trend-num">#3</div><div class="trend-title">Elbil-fradrag 2027</div><div class="trend-meta">18 artikler i dag</div></div>
-        <div class="trend-card"><div class="trend-num">#4</div><div class="trend-title">Aktiesparekonto</div><div class="trend-meta">12 artikler i dag</div></div>
-      </div>
-      <div class="expl-section"><div class="expl-label">KATEGORIER</div></div>
-      <div class="cat-grid">
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/></svg></div><div><div class="cat-name">Bolig</div><div class="cat-count">34 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></div><div><div class="cat-name">Skat & Fradrag</div><div class="cat-count">21 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M19 5c-1.5 0-2.8 1.4-3 2-3.5-1.5-11-.3-11 5 0 1.8 0 3 2 4.5V20h4v-2h3v2h4v-4c1-0.5 1.7-1 2-2h2v-4h-2c0-1-.5-1.5-1-2"/><circle cx="14" cy="10" r="1" fill="var(--amber)" stroke="none"/></svg></div><div><div class="cat-name">Pension</div><div class="cat-count">15 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div><div class="cat-name">Lån & Kredit</div><div class="cat-count">28 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div><div class="cat-name">Investering</div><div class="cat-count">19 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div><div class="cat-name">Forsikring</div><div class="cat-count">11 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div><div><div class="cat-name">Energi</div><div class="cat-count">9 nyheder</div></div></div></div>
-        <div class="cat-card"><div class="cat-card-top"><div class="cat-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><ellipse cx="12" cy="12" rx="4" ry="10"/></svg></div><div><div class="cat-name">EU & Økonomi</div><div class="cat-count">26 nyheder</div></div></div></div>
-      </div>
-    </div>
-    <div class="tabs">
-      <button class="tab" onclick="goTab('s-feed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Feed</span></button>
-      <button class="tab on" onclick="goTab('s-explore')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Udforsk</span></button>
-      <button class="tab" onclick="goTab('s-insights')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Indsigter</span></button>
-      <button class="tab" onclick="goTab('s-profil')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profil</span></button>
-    </div>
-  </div>
+    <div style="font-size:13px;color:var(--text2);padding:4px 24px 0;margin-bottom:18px;line-height:1.5;">Hold styr på de aktier du følger. Du modtager nyheder og ugentlige opsummeringer baseret på din portefølje.</div>
 
-  <!-- INSIGHTS -->
-  <div class="scr scr-insights" id="s-insights">
-    <div class="ins-hdr"><img src="okto-mascot.png" class="mascot-sm" alt="Okto"><div class="ins-title">Dine indsigter</div></div>
-    <div class="ins-month">Februar 2026</div>
-    <div class="ins-content">
-      <div class="ins-summary">
-        <div class="ins-summary-label">Estimeret besparelse denne måned</div>
-        <div class="ins-summary-value">+1.240 kr.</div>
-        <div class="ins-summary-sub">Baseret på renteændringer og nye fradragsmuligheder</div>
+    <div style="padding:0 24px;margin-bottom:20px;display:flex;gap:10px;">
+      <input class="fi" type="text" placeholder="Tilføj aktie, f.eks. Novo Nordisk" id="stock-input" style="flex:1;" onkeydown="if(event.key==='Enter')addStock()">
+      <button onclick="addStock()" style="padding:12px 18px;background:linear-gradient(180deg,var(--amber-lt),var(--amber-dk));color:#1A1520;border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #8A5A10;">+</button>
+    </div>
+
+    <div id="stock-list" style="padding:0 24px;flex:1;">
+      <div class="stock-item" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <span style="font-size:15px;font-weight:600;color:var(--text);">Novo Nordisk</span>
+        </div>
+        <button onclick="this.closest('.stock-item').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       </div>
-      <div class="ins-label">DINE NØGLETAL</div>
-      <div class="ins-cards">
-        <div class="ins-card">
-          <div class="ins-card-icon" style="background:rgba(80,184,104,0.1);"><svg viewBox="0 0 24 24" stroke="var(--green)"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-          <div class="ins-card-content"><div class="ins-card-title">Rente & Lån</div><div class="ins-card-desc">Variabel rente faldet til 2,5%</div></div>
-          <div class="ins-card-value positive">-340/md</div>
+      <div class="stock-item" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <span style="font-size:15px;font-weight:600;color:var(--text);">Apple</span>
         </div>
-        <div class="ins-card">
-          <div class="ins-card-icon" style="background:rgba(80,184,104,0.1);"><svg viewBox="0 0 24 24" stroke="var(--green)"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/></svg></div>
-          <div class="ins-card-content"><div class="ins-card-title">Boligværdi</div><div class="ins-card-desc">Andelsbolig, Hovedstaden</div></div>
-          <div class="ins-card-value positive">+4,2%</div>
-        </div>
-        <div class="ins-card">
-          <div class="ins-card-icon" style="background:rgba(240,160,48,0.1);"><svg viewBox="0 0 24 24" stroke="var(--amber)"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 9h6"/><path d="M9 13h6"/><path d="M9 17h4"/></svg></div>
-          <div class="ins-card-content"><div class="ins-card-title">Skat & Fradrag</div><div class="ins-card-desc">Nyt elbil-fradrag fra 2027</div></div>
-          <div class="ins-card-value neutral">+8.000/år</div>
-        </div>
-        <div class="ins-card">
-          <div class="ins-card-icon" style="background:rgba(80,144,208,0.1);"><svg viewBox="0 0 24 24" stroke="var(--blue)"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <div class="ins-card-content"><div class="ins-card-title">Aktiesparekonto</div><div class="ins-card-desc">Nyt loft: 150.000 kr.</div></div>
-          <div class="ins-card-value positive">+50.000</div>
-        </div>
+        <button onclick="this.closest('.stock-item').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       </div>
-      <div class="ins-ai">
-        <div class="ins-ai-header"><div class="ins-ai-badge"><img src="okto-mascot.png" alt="">OKTOS MÅNEDSOVERBLIK</div></div>
-        <div class="ins-ai-text">Februar har været en god måned for din økonomi. ECBs rentesænkning påvirker dit andelslån positivt, og andelsboligmarkedet i København fortsætter opad. Hold øje med de nye fradragsregler for elbiler — det kan give dig en mærkbar skattefordel fra 2027.</div>
-      </div>
-      <div class="ins-label">SENESTE BEGIVENHEDER</div>
-      <div class="ins-events">
-        <div class="ins-event"><div class="ins-event-dot" style="background:var(--green);"></div><div class="ins-event-content"><div class="ins-event-title">ECB sænker renten til 2,5%</div><div class="ins-event-desc">Din månedlige ydelse falder ca. 340 kr.</div><div class="ins-event-date">19. februar 2026</div></div></div>
-        <div class="ins-event"><div class="ins-event-dot" style="background:var(--blue);"></div><div class="ins-event-content"><div class="ins-event-title">Andelsboligmarkedet stiger 4,2%</div><div class="ins-event-desc">Din bolig er steget ca. 90.000 kr. i værdi</div><div class="ins-event-date">17. februar 2026</div></div></div>
-        <div class="ins-event"><div class="ins-event-dot" style="background:var(--amber);"></div><div class="ins-event-content"><div class="ins-event-title">Aktiesparekonto-loft hævet</div><div class="ins-event-desc">Du kan nu indsætte op til 150.000 kr.</div><div class="ins-event-date">14. februar 2026</div></div></div>
-        <div class="ins-event"><div class="ins-event-dot" style="background:var(--coral);"></div><div class="ins-event-content"><div class="ins-event-title">Nye elbil-fradragsregler foreslået</div><div class="ins-event-desc">Op til 8.000 kr. ekstra fradrag årligt</div><div class="ins-event-date">12. februar 2026</div></div></div>
+      <div class="stock-item" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;">
+        <div style="display:flex;align-items:center;gap:12px;">
+          <div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+          <span style="font-size:15px;font-weight:600;color:var(--text);">Vestas</span>
+        </div>
+        <button onclick="this.closest('.stock-item').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
       </div>
     </div>
+
     <div class="tabs">
       <button class="tab" onclick="goTab('s-feed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Feed</span></button>
-      <button class="tab" onclick="goTab('s-explore')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Udforsk</span></button>
-      <button class="tab on" onclick="goTab('s-insights')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Indsigter</span></button>
+      <button class="tab on" onclick="goTab('s-portfolio')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Portefølje</span></button>
       <button class="tab" onclick="goTab('s-profil')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profil</span></button>
     </div>
   </div>
@@ -783,17 +626,16 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div class="prof-content">
       <div class="prof-section">
         <div class="prof-section-title">DIN SITUATION</div>
-        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Personlige oplysninger</div><div class="prof-item-desc">32 år · Hovedstaden · Lønmodtager</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
-        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><path d="M3 12l9-8 9 8"/><rect x="5" y="12" width="14" height="9"/><rect x="10" y="15" width="4" height="6"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Bolig</div><div class="prof-item-desc">Andelsbolig · Hovedstaden</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
-        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><circle cx="7" cy="17" r="2"/><circle cx="17" cy="17" r="2"/><path d="M5 17H3v-3l2-5h9l4 5h3v3h-2"/><path d="M5 9V6h9"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Køretøjer</div><div class="prof-item-desc">Elbil</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
-        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Lån & Gæld</div><div class="prof-item-desc">Andelslån · Variabel rente</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
-        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Opsparing & Investering</div><div class="prof-item-desc">Aktiesparekonto</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Personlige oplysninger</div><div class="prof-item-desc">32 år · Hovedstaden</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Portefølje</div><div class="prof-item-desc">Novo Nordisk · Apple · Vestas</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
+        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Interesser</div><div class="prof-item-desc">Aktier · Skat · Energi</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
       </div>
       <div class="prof-section">
         <div class="prof-section-title">INDSTILLINGER</div>
         <div class="prof-toggle-row"><div class="prof-toggle-info"><div class="prof-toggle-label">Notifikationer</div><div class="prof-toggle-sub">Vigtige nyheder og opdateringer</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
         <div class="prof-toggle-row"><div class="prof-toggle-info"><div class="prof-toggle-label">Daglig opsummering</div><div class="prof-toggle-sub">Morgen-briefing kl. 07:00</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
         <div class="prof-toggle-row"><div class="prof-toggle-info"><div class="prof-toggle-label">Breaking news</div><div class="prof-toggle-sub">Akutte nyheder der påvirker dig</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
+        <div class="prof-toggle-row"><div class="prof-toggle-info"><div class="prof-toggle-label">Ugentlig portefølje-opsummering</div><div class="prof-toggle-sub">AI-overblik over kommende begivenheder for dine aktier, hver søndag kl. 18:00</div></div><div class="tog on" onclick="this.classList.toggle('on')"></div></div>
       </div>
       <div class="prof-section">
         <div class="prof-section-title">OM</div>
@@ -804,8 +646,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     </div>
     <div class="tabs">
       <button class="tab" onclick="goTab('s-feed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Feed</span></button>
-      <button class="tab" onclick="goTab('s-explore')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg><span>Udforsk</span></button>
-      <button class="tab" onclick="goTab('s-insights')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg><span>Indsigter</span></button>
+      <button class="tab" onclick="goTab('s-portfolio')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span>Portefølje</span></button>
       <button class="tab on" onclick="goTab('s-profil')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg><span>Profil</span></button>
     </div>
   </div>
@@ -814,21 +655,16 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
 
 <!-- Demo nav -->
 <div class="dnav">
-  <button class="on" data-s="s-splash">0. Splash</button>
-  <button data-s="s-welcome">1. Velkommen</button>
-  <button data-s="s-signup">2. Tilmeld</button>
-  <button data-s="s-intro">3. Intro</button>
-  <button data-s="s-p1">4. Grundlag</button>
-  <button data-s="s-p2">5. Bolig</button>
-  <button data-s="s-p3">6. Køretøjer</button>
-  <button data-s="s-p4">7. Lån</button>
-  <button data-s="s-p5">8. Opsparing</button>
-  <button data-s="s-p6">9. Opsummering</button>
-  <button data-s="s-loading">10. Loading</button>
-  <button data-s="s-feed">11. Feed</button>
-  <button data-s="s-explore">12. Udforsk</button>
-  <button data-s="s-insights">13. Indsigter</button>
-  <button data-s="s-profil">14. Profil</button>
+  <button class="on" data-s="s-splash">Splash</button>
+  <button data-s="s-welcome">Velkommen</button>
+  <button data-s="s-signup">Tilmeld</button>
+  <button data-s="s-intro">Intro</button>
+  <button data-s="s-p1">Trin 1</button>
+  <button data-s="s-p1b">Trin 2</button>
+  <button data-s="s-loading">Loading</button>
+  <button data-s="s-feed">Feed</button>
+  <button data-s="s-portfolio">Portefølje</button>
+  <button data-s="s-profil">Profil</button>
 </div>
 
 <script>
@@ -847,6 +683,12 @@ function go(id){
   if(btn)btn.classList.add('on');
   if(id==='s-loading')runLoad();
   if(id==='s-splash')runSplash();
+  if(id==='s-intro')runIntroAuto();
+}
+let introAutoT=null;
+function runIntroAuto(){
+  if(introAutoT){clearTimeout(introAutoT);introAutoT=null;}
+  introAutoT=setTimeout(()=>{go('s-p1');introAutoT=null;},4000);
 }
 document.querySelectorAll('.dnav button').forEach(b=>{
   b.addEventListener('click',()=>go(b.dataset.s));
@@ -893,7 +735,7 @@ function runLoad(){
   const titles=[
     ['Opretter profil...','Okto forbereder din personlige profil'],
     ['Scanner kilder...','Gennemsøger DR, Børsen, Reuters, ECB og mange flere'],
-    ['Matcher nyheder...','Finder nyheder der er relevante for din økonomi'],
+    ['Matcher nyheder...','Finder nyheder baseret på dine interesser'],
     ['Næsten klar!','Genererer personlige AI-indsigter til dig']
   ];
   const fill=document.getElementById('load-fill');
@@ -997,6 +839,18 @@ function togPw(btn,id){
 }
 function goTab(id){
   go(id);
+}
+function addStock(){
+  const input=document.getElementById('stock-input');
+  const name=input.value.trim();
+  if(!name)return;
+  const list=document.getElementById('stock-list');
+  const item=document.createElement('div');
+  item.className='stock-item';
+  item.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;';
+  item.innerHTML='<div style="display:flex;align-items:center;gap:12px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><span style="font-size:15px;font-weight:600;color:var(--text);">'+name+'</span></div><button onclick="this.closest(\'.stock-item\').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>';
+  list.appendChild(item);
+  input.value='';
 }
 function stp(id,d){
   const el=document.getElementById(id);
