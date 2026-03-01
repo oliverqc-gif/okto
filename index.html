@@ -252,6 +252,24 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
 .nc.feat{background:linear-gradient(135deg,#2A1E10,#3A2818,#2A1E10);border:1px solid rgba(240,160,48,0.2);box-shadow:0 0 24px rgba(240,160,48,0.06);}
 .nc.feat .ai{background:rgba(240,160,48,0.08);border-left-color:var(--amber-lt);}
 .nc.feat .tag{background:rgba(240,160,48,0.12);color:var(--amber-lt);}
+
+/* Sentiment card styles */
+.nc.pos,.nc.neg,.nc.neu{border-left:none;position:relative;overflow:hidden;}
+.nc.pos::before,.nc.neg::before,.nc.neu::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;border-radius:20px 20px 0 0;}
+.nc.pos::after,.nc.neg::after,.nc.neu::after{content:'';position:absolute;top:0;left:0;right:0;height:40px;pointer-events:none;border-radius:20px 20px 0 0;}
+.nc.pos::before{background:rgba(110,170,120,0.5);}.nc.pos::after{background:linear-gradient(180deg,rgba(110,170,120,0.06),transparent);}
+.nc.neg::before{background:rgba(190,100,90,0.5);}.nc.neg::after{background:linear-gradient(180deg,rgba(190,100,90,0.06),transparent);}
+.nc.neu::before{background:rgba(200,170,100,0.5);}.nc.neu::after{background:linear-gradient(180deg,rgba(200,170,100,0.06),transparent);}
+.nc.pos .ai{background:rgba(110,170,120,0.05);border-left-color:rgba(110,170,120,0.5);}
+.nc.neg .ai{background:rgba(190,100,90,0.05);border-left-color:rgba(190,100,90,0.5);}
+.nc.neu .ai{background:rgba(200,170,100,0.05);border-left-color:rgba(200,170,100,0.5);}
+.nc-sent{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
+.nc.pos .nc-sent{background:rgba(110,170,120,0.7);box-shadow:0 0 6px rgba(110,170,120,0.3);}
+.nc.neg .nc-sent{background:rgba(190,100,90,0.7);box-shadow:0 0 6px rgba(190,100,90,0.3);}
+.nc.neu .nc-sent{background:rgba(200,170,100,0.7);box-shadow:0 0 6px rgba(200,170,100,0.3);}
+
+.stock-logo-wrap{width:36px;height:36px;border-radius:10px;background:var(--surface2);display:flex;align-items:center;justify-content:center;overflow:hidden;flex-shrink:0;}
+
 .brk{display:inline-flex;align-items:center;gap:4px;padding:4px 10px;background:rgba(224,80,80,0.15);border-radius:6px;font-family:'DM Sans',sans-serif;font-size:10px;font-weight:700;color:var(--coral);letter-spacing:0.8px;margin-bottom:10px;text-transform:uppercase;}
 .brk .pls{width:6px;height:6px;background:var(--coral);border-radius:2px;animation:pulse 1.5s infinite;}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
@@ -453,8 +471,8 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
   <!-- INTRO -->
   <div class="scr scr-welcome" id="s-intro" style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:60px 36px 40px;background:radial-gradient(ellipse at 50% 30%,rgba(240,160,48,0.06),var(--bg) 70%);">
     <img src="okto-mascot.png" class="mascot-md" alt="Okto" style="margin-bottom:24px;">
-    <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.3;">Finansnyheder der er relevante for dig</div>
-    <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.7;max-width:310px;margin-bottom:32px;">Okto filtrerer støjen fra og giver dig kun de nyheder, der faktisk betyder noget for dig — tilpasset dine interesser og din aktieportefølje.</div>
+    <div style="font-family:'Fraunces',serif;font-size:24px;font-weight:700;color:var(--text);text-align:center;margin-bottom:16px;line-height:1.3;">Nyheder der er relevante for din portefølje</div>
+    <div style="font-size:15px;color:var(--text2);text-align:center;line-height:1.7;max-width:310px;margin-bottom:32px;">Okto filtrerer støjen fra og giver dig kun de nyheder, der faktisk betyder noget for dig — tilpasset din aktieportefølje.</div>
     <button class="btn-p" onclick="go('s-signup')" style="width:100%;max-width:310px;">Opret konto</button>
   </div>
 
@@ -466,14 +484,19 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div class="fg"><label class="fl">Alder</label><div class="rv"><span class="rv-n" id="age-v">32</span><span class="rv-u">år</span></div><input class="rng" type="range" min="18" max="80" value="32" oninput="document.getElementById('age-v').textContent=this.value"><div class="rng-l"><span>18</span><span>80</span></div></div>
     <div class="fg" style="margin-top:22px"><label class="fl">Region</label><div class="sel-w"><select class="fsel"><option>Hovedstaden</option><option>Midtjylland</option><option>Nordjylland</option><option>Sjælland</option><option>Syddanmark</option></select></div></div>
     <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-p1b')">Næste</button></div>
+
   </div>
 
-  <!-- PROFILE STEP 2: INTERESSER -->
+  <!-- PROFILE STEP 2: PORTEFØLJE -->
   <div class="scr scr-profile" id="s-p1b">
     <div class="hdr"><button class="back" onclick="go('s-p1')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>Tilbage</button></div>
     <div class="prog"><div class="prog-s done"></div><div class="prog-s now"></div></div>
-    <div class="ttl">Dine interesser</div><div class="sub" style="margin-bottom:26px">Vælg de emner du gerne vil følge.</div>
-    <div class="fg"><label class="fl">Nyhedsemner</label><div class="chips"><div class="chip sel" onclick="this.classList.toggle('sel')">Aktier</div><div class="chip" onclick="this.classList.toggle('sel')">Bolig</div><div class="chip sel" onclick="this.classList.toggle('sel')">Skat</div><div class="chip" onclick="this.classList.toggle('sel')">Pension</div><div class="chip" onclick="this.classList.toggle('sel')">Forsikring</div><div class="chip sel" onclick="this.classList.toggle('sel')">Energi</div><div class="chip" onclick="this.classList.toggle('sel')">EU & Økonomi</div><div class="chip" onclick="this.classList.toggle('sel')">Lån & Renter</div><div class="chip" onclick="this.classList.toggle('sel')">Krypto</div><div class="chip" onclick="this.classList.toggle('sel')">Transport</div><div class="chip" onclick="this.classList.toggle('sel')">Opsparing</div><div class="chip" onclick="this.classList.toggle('sel')">Investering</div></div></div>
+    <div class="ttl">Din portefølje</div><div class="sub" style="margin-bottom:26px">Tilføj de aktier du har i din portefølje.</div>
+    <div style="display:flex;gap:10px;margin-bottom:20px;">
+      <input class="fi" type="text" placeholder="Søg ticker, f.eks. NOVO-B" id="onboard-stock-input" style="flex:1;" onkeydown="if(event.key==='Enter')addOnboardStock()">
+      <button onclick="addOnboardStock()" style="padding:12px 18px;background:linear-gradient(180deg,var(--amber-lt),var(--amber-dk));color:#1A1520;border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #8A5A10;">+</button>
+    </div>
+    <div id="onboard-stock-list"></div>
     <div style="height:20px"></div><div class="fbot"><button class="btn-p" onclick="go('s-loading')">Færdig</button></div>
   </div>
 
@@ -502,7 +525,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div class="load-steps">
       <div class="load-step" id="ls1"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Opretter finansiel profil</span></div>
       <div class="load-step" id="ls2"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Scanner nyhedskilder</span></div>
-      <div class="load-step" id="ls3"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Matcher nyheder til dine interesser</span></div>
+      <div class="load-step" id="ls3"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Matcher nyheder til din portefølje</span></div>
       <div class="load-step" id="ls4"><div class="load-check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><polyline points="20 6 9 17 4 12"/></svg></div><span class="load-step-text">Genererer personlige indsigter</span></div>
     </div>
     <div class="load-bar" style="margin-top:20px"><div class="load-bar-fill" id="load-fill"></div></div>
@@ -510,58 +533,38 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
 
   <!-- FEED -->
   <div class="scr scr-feed" id="s-feed">
-    <div class="notif" style="margin-top:60px">
-      <div class="notif-h"><div class="notif-icon"><img src="okto-mascot.png" alt="Okto"></div><span class="notif-app">Okto</span><span class="notif-ago">nu</span></div>
-      <div class="notif-t">ECB sænker renten med 0,25%</div>
-      <div class="notif-b">Denne nyhed kan påvirke dine interesseområder. Tryk for at læse mere.</div>
-    </div>
     <div class="fh">
       <div class="fh-l"><img src="okto-mascot.png" class="mascot-sm" alt="Okto"><div class="fh-g">Hej, Thomas</div></div>
       <div class="fh-r"><button class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg></button><button class="ib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><div class="ndot"></div></button></div>
     </div>
     <div class="fh-d">Torsdag, 19. februar 2026</div>
-    <div class="pills"><div class="pill on">Til dig</div><div class="pill">Aktier</div><div class="pill">Skat</div><div class="pill">Pension</div><div class="pill">Energi</div><div class="pill">EU & Økonomi</div></div>
-
-    <!-- Ugentlig portefølje-opsummering -->
-    <div style="margin:0 20px 14px;padding:18px;background:linear-gradient(135deg,#1E2A1E,#2A3828,#1E2A1E);border:1px solid rgba(80,184,104,0.2);border-radius:var(--rl);box-shadow:0 0 24px rgba(80,184,104,0.06);">
-      <div style="display:flex;align-items:center;gap:6px;margin-bottom:8px;">
-        <img src="okto-mascot.png" style="width:18px;height:18px;" alt="">
-        <span style="font-size:10px;font-weight:700;color:var(--green);text-transform:uppercase;letter-spacing:0.8px;">Ugentlig opsummering</span>
-      </div>
-      <div style="font-family:'Fraunces',serif;font-size:16px;font-weight:600;color:var(--text);line-height:1.35;margin-bottom:8px;">Din uge i overblik: 19.–25. feb.</div>
-      <div style="font-size:13px;color:var(--text2);line-height:1.5;margin-bottom:10px;">Novo Nordisk offentliggør kvartalsregnskab onsdag. Apple-event forventes torsdag med nye produktlanceringer. Vestas-aktien kan påvirkes af nye EU-klimamål der diskuteres fredag.</div>
-      <div style="display:flex;gap:6px;">
-        <span class="tag tag-s">3 begivenheder</span>
-        <span class="tag tag-h">Denne uge</span>
-      </div>
-    </div>
+    <div class="pills"><div class="pill on">Alle</div><div class="pill">Novo Nordisk</div><div class="pill">Apple</div><div class="pill">Vestas</div></div>
 
     <div class="ns">
       <div class="ns-t">I DAG</div>
-      <div class="nc feat fu d1">
-        <div class="brk"><div class="pls"></div>VIGTIG NYHED</div>
-        <div class="nc-h"><div class="nc-src"><div class="sdot sdot-ecb"></div><span class="sname">ECB / Reuters</span></div><span class="nc-t">12:45</span></div>
-        <div class="nc-title">ECB sænker styringsrenten med 0,25 procentpoint til 2,5%</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">En rentesænkning kan påvirke lån, boligpriser og opsparinger. Følg med for at se, hvad det betyder for dig.</div></div>
-        <div class="tags"><span class="tag tag-t">Renter</span><span class="tag tag-t">Økonomi</span></div>
+      <div class="nc pos fu d1">
+        <div class="nc-h"><div class="nc-src"><div class="nc-sent"></div><div class="sdot sdot-bor"></div><span class="sname">Børsen</span></div><span class="nc-t">13:30</span></div>
+        <div class="nc-title">Novo Nordisk overgår forventningerne i Q4-regnskab med rekordomsætning på Wegovy</div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Du ejer Novo Nordisk. Regnskabet viser 32% omsætningsvækst drevet af Wegovy — analytikere hæver kursmål.</div></div>
+        <div class="tags"><span class="tag tag-s">Novo Nordisk</span><span class="tag tag-t">Regnskab</span></div>
       </div>
-      <div class="nc fu d2">
-        <div class="nc-h"><div class="nc-src"><div class="sdot sdot-dr"></div><span class="sname">DR Nyheder</span></div><span class="nc-t">11:20</span></div>
-        <div class="nc-title">Regeringen foreslår nye fradragsregler for elbiler fra 2027</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Nye fradragsregler kan give fordele for elbil-ejere. Læs mere om, hvad det kan betyde.</div></div>
-        <div class="tags"><span class="tag tag-t">Skat & fradrag</span><span class="tag" style="background:rgba(160,100,220,0.1);color:#A064DC;">Elbil</span></div>
+      <div class="nc neg fu d2">
+        <div class="nc-h"><div class="nc-src"><div class="nc-sent"></div><div class="sdot sdot-ecb"></div><span class="sname">Reuters</span></div><span class="nc-t">11:15</span></div>
+        <div class="nc-title">Apple ramt af nye EU-krav: Tvinges til at åbne App Store for konkurrenter</div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Du ejer Apple. EU's Digital Markets Act kan presse App Store-omsætningen, som udgør ca. 22% af Apples serviceindtægter.</div></div>
+        <div class="tags"><span class="tag tag-s">Apple</span><span class="tag tag-h">EU-regulering</span></div>
       </div>
-      <div class="nc fu d3">
-        <div class="nc-h"><div class="nc-src"><div class="sdot sdot-bor"></div><span class="sname">Børsen</span></div><span class="nc-t">09:15</span></div>
-        <div class="nc-title">Andelsboligmarkedet i København stiger 4,2% i Q4 2025</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Andelsboligmarkedet i København viser positiv vækst. Relevant hvis du følger boligmarkedet.</div></div>
-        <div class="tags"><span class="tag tag-h">Boligmarked</span><span class="tag tag-s">København</span></div>
+      <div class="nc pos fu d3">
+        <div class="nc-h"><div class="nc-src"><div class="nc-sent"></div><div class="sdot sdot-dr"></div><span class="sname">DR Nyheder</span></div><span class="nc-t">09:45</span></div>
+        <div class="nc-title">EU vedtager ambitiøse klimamål — vindenergi-sektoren forventes at boome</div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Du ejer Vestas. Nye EU-klimamål øger efterspørgslen på vindenergi — Vestas er Europas største vindmølleproducent.</div></div>
+        <div class="tags"><span class="tag tag-s">Vestas</span><span class="tag tag-t">Klimapolitik</span></div>
       </div>
-      <div class="nc fu d4">
-        <div class="nc-h"><div class="nc-src"><div class="sdot sdot-fin"></div><span class="sname">Finans.dk</span></div><span class="nc-t">08:30</span></div>
-        <div class="nc-title">Nye regler for aktiesparekonto: Loftet hæves til 150.000 kr.</div>
-        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Har du en aktiesparekonto? Det nye loft giver mulighed for at indsætte mere med den lave beskatning på 17%.</div></div>
-        <div class="tags"><span class="tag tag-s">Aktiesparekonto</span><span class="tag tag-t">Skat</span></div>
+      <div class="nc neu fu d4">
+        <div class="nc-h"><div class="nc-src"><div class="nc-sent"></div><div class="sdot sdot-fin"></div><span class="sname">Finans.dk</span></div><span class="nc-t">08:20</span></div>
+        <div class="nc-title">Novo Nordisk annoncerer nyt forskningssamarbejde med Københavns Universitet</div>
+        <div class="ai"><div class="ai-h"><div class="ai-badge"><img src="okto-mascot.png" alt="">Personlig indsigt</div></div><div class="ai-txt">Du ejer Novo Nordisk. Samarbejdet fokuserer på næste generation af GLP-1-behandlinger — langsigtet potentiale.</div></div>
+        <div class="tags"><span class="tag tag-s">Novo Nordisk</span><span class="tag tag-t">Forskning</span></div>
       </div>
       <div style="height:10px"></div>
     </div>
@@ -577,36 +580,14 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
     <div style="padding:16px 24px 0;">
       <div style="font-family:'Fraunces',serif;font-size:22px;font-weight:700;color:var(--text);">Din portefølje</div>
     </div>
-    <div style="font-size:13px;color:var(--text2);padding:4px 24px 0;margin-bottom:18px;line-height:1.5;">Hold styr på de aktier du følger. Du modtager nyheder og ugentlige opsummeringer baseret på din portefølje.</div>
+    <div style="font-size:13px;color:var(--text2);padding:4px 24px 0;margin-bottom:18px;line-height:1.5;">Du modtager nyheder og information om kommende begivenheder baseret på aktierne i din portefølje.</div>
 
     <div style="padding:0 24px;margin-bottom:20px;display:flex;gap:10px;">
-      <input class="fi" type="text" placeholder="Tilføj aktie, f.eks. Novo Nordisk" id="stock-input" style="flex:1;" onkeydown="if(event.key==='Enter')addStock()">
+      <input class="fi" type="text" placeholder="Tilføj ticker, f.eks. AAPL" id="stock-input" style="flex:1;" onkeydown="if(event.key==='Enter')addStock()">
       <button onclick="addStock()" style="padding:12px 18px;background:linear-gradient(180deg,var(--amber-lt),var(--amber-dk));color:#1A1520;border:none;border-radius:var(--rs);font-family:'DM Sans',sans-serif;font-size:18px;font-weight:700;cursor:pointer;box-shadow:0 3px 0 #8A5A10;">+</button>
     </div>
 
-    <div id="stock-list" style="padding:0 24px;flex:1;">
-      <div class="stock-item" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <span style="font-size:15px;font-weight:600;color:var(--text);">Novo Nordisk</span>
-        </div>
-        <button onclick="this.closest('.stock-item').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-      </div>
-      <div class="stock-item" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <span style="font-size:15px;font-weight:600;color:var(--text);">Apple</span>
-        </div>
-        <button onclick="this.closest('.stock-item').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-      </div>
-      <div class="stock-item" style="display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;">
-        <div style="display:flex;align-items:center;gap:12px;">
-          <div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-          <span style="font-size:15px;font-weight:600;color:var(--text);">Vestas</span>
-        </div>
-        <button onclick="this.closest('.stock-item').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>
-      </div>
-    </div>
+    <div id="stock-list" style="padding:0 24px;flex:1;"></div>
 
     <div class="tabs">
       <button class="tab" onclick="goTab('s-feed')"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg><span>Feed</span></button>
@@ -628,7 +609,6 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
         <div class="prof-section-title">DIN SITUATION</div>
         <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Personlige oplysninger</div><div class="prof-item-desc">32 år · Hovedstaden</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
         <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Portefølje</div><div class="prof-item-desc">Novo Nordisk · Apple · Vestas</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
-        <div class="prof-item"><div class="prof-item-icon"><svg viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></div><div class="prof-item-content"><div class="prof-item-title">Interesser</div><div class="prof-item-desc">Aktier · Skat · Energi</div></div><div class="prof-arrow"><svg viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg></div></div>
       </div>
       <div class="prof-section">
         <div class="prof-section-title">INDSTILLINGER</div>
@@ -660,7 +640,7 @@ body{font-family:'DM Sans',sans-serif;background:#0E0A12;display:flex;flex-direc
   <button data-s="s-signup">Tilmeld</button>
   <button data-s="s-intro">Intro</button>
   <button data-s="s-p1">Trin 1</button>
-  <button data-s="s-p1b">Trin 2</button>
+  <button data-s="s-p1b">Portefølje</button>
   <button data-s="s-loading">Loading</button>
   <button data-s="s-feed">Feed</button>
   <button data-s="s-portfolio">Portefølje</button>
@@ -735,7 +715,7 @@ function runLoad(){
   const titles=[
     ['Opretter profil...','Okto forbereder din personlige profil'],
     ['Scanner kilder...','Gennemsøger DR, Børsen, Reuters, ECB og mange flere'],
-    ['Matcher nyheder...','Finder nyheder baseret på dine interesser'],
+    ['Matcher nyheder...','Finder nyheder baseret på din portefølje'],
     ['Næsten klar!','Genererer personlige AI-indsigter til dig']
   ];
   const fill=document.getElementById('load-fill');
@@ -840,18 +820,97 @@ function togPw(btn,id){
 function goTab(id){
   go(id);
 }
-function addStock(){
-  const input=document.getElementById('stock-input');
-  const name=input.value.trim();
-  if(!name)return;
-  const list=document.getElementById('stock-list');
+/* ── Logo.dev ───────────────────────────────────────────────── */
+const LOGO_TOKEN='pk_Kq1vT7BGSSOlHC0NiU60ug';
+const logoCache=JSON.parse(localStorage.getItem('okto_logo_cache')||'{}');
+function getLogoUrl(ticker){
+  const t=ticker.toUpperCase();
+  if(logoCache[t])return logoCache[t];
+  const url=`https://img.logo.dev/ticker/${t}?token=${LOGO_TOKEN}&size=40`;
+  logoCache[t]=url;
+  localStorage.setItem('okto_logo_cache',JSON.stringify(logoCache));
+  return url;
+}
+function makeLogoWrap(ticker){
+  const wrap=document.createElement('div');
+  wrap.className='stock-logo-wrap';
+  const img=document.createElement('img');
+  img.src=getLogoUrl(ticker);
+  img.alt=ticker;
+  img.style.cssText='width:28px;height:28px;object-fit:contain;border-radius:4px;';
+  img.onerror=function(){
+    wrap.innerHTML='';
+    const svg=document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','0 0 24 24');
+    svg.setAttribute('fill','none');
+    svg.setAttribute('stroke','var(--amber)');
+    svg.setAttribute('stroke-width','1.8');
+    svg.setAttribute('stroke-linecap','round');
+    svg.style.cssText='width:18px;height:18px;';
+    const p1=document.createElementNS('http://www.w3.org/2000/svg','polyline');
+    p1.setAttribute('points','22 7 13.5 15.5 8.5 10.5 2 17');
+    const p2=document.createElementNS('http://www.w3.org/2000/svg','polyline');
+    p2.setAttribute('points','16 7 22 7 22 13');
+    svg.appendChild(p1);svg.appendChild(p2);
+    wrap.appendChild(svg);
+  };
+  wrap.appendChild(img);
+  return wrap;
+}
+function makeStockItem(ticker,label){
   const item=document.createElement('div');
   item.className='stock-item';
   item.style.cssText='display:flex;align-items:center;justify-content:space-between;padding:14px 16px;background:var(--surface);border:1px solid var(--border);border-radius:var(--rm);margin-bottom:10px;';
-  item.innerHTML='<div style="display:flex;align-items:center;gap:12px;"><div style="width:36px;height:36px;border-radius:10px;background:rgba(240,160,48,0.08);display:flex;align-items:center;justify-content:center;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="1.8" stroke-linecap="round" style="width:18px;height:18px;"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div><span style="font-size:15px;font-weight:600;color:var(--text);">'+name+'</span></div><button onclick="this.closest(\'.stock-item\').remove()" style="background:none;border:none;cursor:pointer;padding:4px;"><svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg></button>';
-  list.appendChild(item);
+  // Left side
+  const left=document.createElement('div');
+  left.style.cssText='display:flex;align-items:center;gap:12px;';
+  left.appendChild(makeLogoWrap(ticker));
+  const txt=document.createElement('div');
+  const name=document.createElement('span');
+  name.style.cssText='font-size:15px;font-weight:600;color:var(--text);';
+  name.textContent=label;
+  const tick=document.createElement('div');
+  tick.style.cssText='font-size:11px;color:var(--text3);margin-top:1px;';
+  tick.textContent=ticker.toUpperCase();
+  txt.appendChild(name);txt.appendChild(tick);
+  left.appendChild(txt);
+  item.appendChild(left);
+  // Delete button
+  const btn=document.createElement('button');
+  btn.style.cssText='background:none;border:none;cursor:pointer;padding:4px;';
+  btn.innerHTML='<svg viewBox="0 0 24 24" fill="none" stroke="var(--text3)" stroke-width="2" stroke-linecap="round" style="width:18px;height:18px;"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+  btn.onclick=function(){this.closest('.stock-item').remove();};
+  item.appendChild(btn);
+  return item;
+}
+function addStock(){
+  const input=document.getElementById('stock-input');
+  const ticker=input.value.trim();
+  if(!ticker)return;
+  document.getElementById('stock-list').appendChild(makeStockItem(ticker,ticker.toUpperCase()));
   input.value='';
 }
+function addOnboardStock(){
+  const input=document.getElementById('onboard-stock-input');
+  const ticker=input.value.trim();
+  if(!ticker)return;
+  document.getElementById('onboard-stock-list').appendChild(makeStockItem(ticker,ticker.toUpperCase()));
+  input.value='';
+}
+/* ── Seed demo portfolio stocks ─────────────────────────────── */
+document.addEventListener('DOMContentLoaded',function(){
+  const demoStocks=[
+    {ticker:'NOVO-B',label:'Novo Nordisk'},
+    {ticker:'AAPL',label:'Apple'},
+    {ticker:'VWS.CO',label:'Vestas'}
+  ];
+  const sl=document.getElementById('stock-list');
+  const ol=document.getElementById('onboard-stock-list');
+  demoStocks.forEach(function(s){
+    sl.appendChild(makeStockItem(s.ticker,s.label));
+    if(s.ticker==='NOVO-B') ol.appendChild(makeStockItem(s.ticker,s.label));
+  });
+});
 function stp(id,d){
   const el=document.getElementById(id);
   let v=parseInt(el.textContent)+d;
